@@ -1,10 +1,3 @@
-FROM node:12.4.0-alpine
-
-WORKDIR /app
-
-RUN apk update && \
- apk add git && \
- npm install -g npm && \
- npm install -g vue-cli
-
-EXPOSE 9000
+FROM node:14.15.1
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app

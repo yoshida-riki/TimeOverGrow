@@ -1,15 +1,15 @@
 version: '3.8'
-
-services:
- nuxt:
-   container_name: TimeOverGrow
-   build: .
-
-   image: TimeOverGrow_image
-
-   volumes:
-    - ./TimeOverGrow:/app
-   tty: true
-
-   ports:
-    - "9000:9000"
+services: 
+  web:
+    container_name: ctr-time-over-grow
+    build: 
+      context: .
+    image: img-time-over-grow
+    volumes: 
+      - .:/usr/src/app
+    ports: 
+      - '3000:3000'
+    environment: 
+      PORT: 3000
+      HOST: 0.0.0.0
+    command: './compose_command.bash'
