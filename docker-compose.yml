@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+ nuxt:
+   container_name: TimeOverGrow
+   build: .
+
+   image: TimeOverGrow_image
+
+   volumes:
+    - ./TimeOverGrow:/app
+   tty: true
+
+   ports:
+    - "9000:9000"
