@@ -1,49 +1,41 @@
 <template>
-  
+<div id="animated-number-demo">
+  <input v-model.number="number" type="number" step="20" />
+  <p>{{ animatedNumber }}</p>
+</div>
 </template>
 
-<script>
-import gsap from 'gsap'
-
+<script> 
 export default {
-  methods: {
-    enter: function(el, done) {
-
-      let tl = gsap.timeline({    //Timelineの生成の書き方変わった！
-        onComplete: done
-      })
-      tl.set(el, {
-        y: window.innerWidth * 1.5,
-        scale: 0.8,
-        transformOrigin: '50% 50%'
-      })
-      tl.to(el, {
-        duration: 0.4,    //durationも中に！
-        y: 0,
-        ease: 'power4.easeout'    //easingの書き方も変わった！
-      })
-      tl.to(el, {
-        duration: 0.8,
-        scale: 1,
-        ease: 'power4.easeout'
-      })
-
-    },
-    leave: function(el, done) {
-
-      gsap.to(el, {    //TweenMax.to() ではない！
-        duration: 0.8,
-        y: window.innerHeight * 1.5,
-        ease: 'power4.easeout',
-        onComplete: done
-      })
-
+  data() {
+    return {
+      number: 0,
+      tweenedNumber: 0
+    }
+  },
+  computed: {
+    animatedNumber() {
+      return this.tweenedNumber.toFixed(0)
+    }
+  },
+  watch: {
+    number(newValue) {
+      gsap.to(this.$data, { duration: 0.5, tweenedNumber: newValue })
     }
   }
-
 }
+Vue.createApp(Demo).mount('#animated-number-demo')
 </script>
 
 <style>
-
+.container {
+  margin: 0 auto;
+  min-height: 20vh;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 50px;
+}
 </style>
