@@ -4,9 +4,9 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'time-over-grow',
+    title: "time-over-grow",
     meta: [
-      { charset: 'utf-8' },
+      { charset: "utf-8" },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
@@ -17,7 +17,12 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: [
+    {
+      src: '@/plugins/plugin',
+      mode: 'client'
+    }
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
