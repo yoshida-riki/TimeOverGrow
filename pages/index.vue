@@ -1,24 +1,26 @@
 <template>
   <div>
+    <Header />
     <input
       v-model.number="num" type="number"
     >
     <AnimatedNumber
       :value="num"
-    >
+    />
     </AnimatedNumber>
   </div>
 </template>
 
 <script>
 import AnimatedNumber from '../components/AnimatedNumber';
-import BootstrapVue from 'bootstrap-vue';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import Header from '../components/header';
 
 
 export default {
-  components: { AnimatedNumber },
+  components: {
+    AnimatedNumber,
+    Header
+  },
   data () {
     return {
       num: 0,
