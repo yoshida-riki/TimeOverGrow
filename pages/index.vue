@@ -36,7 +36,5 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  display: flex;
-}
+
 </style>
