@@ -1,13 +1,12 @@
 <template>
   <div>
     <Header />
-    <input
-      v-model.number="num" type="number"
-    >
     <AnimatedNumber
       :value="num"
     />
-    </AnimatedNumber>
+    <input
+      v-model.number="num" type="number"
+    >
   </div>
 </template>
 
