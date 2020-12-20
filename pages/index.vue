@@ -1,9 +1,14 @@
 <template>
   <div>
     <Header />
-    <TotallNumber
-      :value="num"
-    />
+    <v-card
+    class="card"
+    >
+      <TotallNumber
+        :value="num"
+      />
+      <SingleNumber />
+    </v-card>
     <input
       v-model.number="num" type="number"
     >
@@ -11,14 +16,16 @@
 </template>
 
 <script>
-import TotallNumber from '../components/TotallNumber';
 import Header from '../components/header';
+import TotallNumber from '../components/TotallNumber';
+import SingleNumber from '../components/SingleNumber';
 
 
 export default {
   components: {
+    Header,
     TotallNumber,
-    Header
+    SingleNumber,
   },
   data () {
     return {
@@ -28,6 +35,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+.card {
+  display: flex;
+}
 </style>
