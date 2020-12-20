@@ -13,11 +13,12 @@
     </template>
 
     <v-img
-      height="250"
-      src="../components/images/Upgrade.png"
+      height="300"
+      v-bind:src="image_src"
     ></v-img>
 
     <v-card-title>Cafe Badilico</v-card-title>
+    {{animated_number}}
 
     <v-card-text>
       <v-row
@@ -87,7 +88,8 @@ export default {
   },
   data () {
     return {
-      animated_number: 0
+      animated_number: 0,
+      image_src: require("@/assets/Upgrade.png"),
     };
   },
   watch: {
