@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <AnimatedNumber
+    <TotallNumber
       :value="num"
     />
     <input
@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import AnimatedNumber from '../components/AnimatedNumber';
+import TotallNumber from '../components/TotallNumber';
 import Header from '../components/header';
 
 
 export default {
   components: {
-    AnimatedNumber,
+    TotallNumber,
     Header
   },
   data () {
