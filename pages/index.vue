@@ -10,7 +10,8 @@
       <SingleNumber />
     </v-card>
     <input
-      v-model.number="num" type="number"
+      v-model.number='num'
+      type="number"
     >
   </div>
 </template>
