@@ -21,7 +21,6 @@ export default {
     {
       src: '@/plugins/plugin',
       mode: 'client'
-
     }
   ],
 
@@ -32,14 +31,16 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    
+    // Simple usage
     '@nuxtjs/vuetify',
+
+    // With options
+    ['@nuxtjs/vuetify', { /* module options */ }]
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
-  ],
+  modules: [],
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 }
