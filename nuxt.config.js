@@ -31,16 +31,36 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    
     // Simple usage
-    '@nuxtjs/vuetify',
-
-    // With options
-    ['@nuxtjs/vuetify', { /* module options */ }]
+    '@nuxtjs/vuetify'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: [
+    '@nuxtjs/dotenv',
+    '@nuxtjs/vuetify',
+  ],
+  devModules: [
+    '@nuxtjs/vuetify'
+  ],
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    // plugins: [
+    //   new webpack.providePlugin({
+    //     '_': 'lodash'
+    //   })
+    // ],
+  },
+}
+
+module.exports = {
+  modules: [
+    '@nuxtjs/vuetify'
+  ],
+  vuetify: {
+
+    theme: {
+
+    }
+  }
 }
