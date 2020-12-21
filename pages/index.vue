@@ -5,14 +5,11 @@
     class="card"
     >
       <TotallNumber
-        :value="num"
-      />
+        :value="num"/>
       <SingleNumber />
     </v-card>
-    <input
-      v-model.number='num'
-      type="number"
-    >
+    <input v-model.number='num' type="number">
+
   </div>
 </template>
 
