@@ -16,5 +16,12 @@ module.exports = {
     'eslint:recommended',
   ],
   plugins: ['prettier'],
-  rules: {},
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+      },
+    ],
+  },
 }
