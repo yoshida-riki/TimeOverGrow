@@ -4,9 +4,9 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: "time-over-grow",
+    title: 'time-over-grow',
     meta: [
-      { charset: "utf-8" },
+      { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
@@ -20,8 +20,8 @@ export default {
   plugins: [
     {
       src: '@/plugins/plugin',
-      mode: 'client'
-    }
+      mode: 'client',
+    },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -32,17 +32,12 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // Simple usage
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    '@nuxtjs/dotenv',
-    '@nuxtjs/vuetify',
-  ],
-  devModules: [
-    '@nuxtjs/vuetify'
-  ],
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/vuetify'],
+  devModules: ['@nuxtjs/vuetify'],
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     // plugins: [
@@ -52,18 +47,6 @@ export default {
     // ],
   },
   generate: {
-    dir: 'dist'
-  }
-}
-
-module.exports = {
-  modules: [
-    '@nuxtjs/vuetify'
-  ],
-  vuetify: {
-
-    theme: {
-
-    }
-  }
+    dir: 'dist',
+  },
 }

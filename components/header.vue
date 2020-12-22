@@ -1,21 +1,18 @@
 <template>
   <div>
-    <v-system-bar
-      height="100"
-      color="primary"
-    >
-    <h1>{{ title }}</h1>
+    <v-system-bar height="100" color="primary">
+      <h1>{{ title }}</h1>
     </v-system-bar>
   </div>
 </template>
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       title: 'TimeOverGrow',
     }
-  }
+  },
 }
 </script>
 

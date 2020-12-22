@@ -1,48 +1,38 @@
 <template>
-  <div
-    v-for="comment in comments" :key="comment.id"
-  >
+  <div>
     <Header />
-    <v-card
-    class="card"
-    >
-      <TotallNumber
-        :value="num"/>
+    <v-card class="card">
+      <TotallNumber :value="num" />
       <SingleNumber />
     </v-card>
-    <input v-model.number="num" type="number">
+    <input v-model.number="num" type="number" />
     <span v-if="comment.created">
-      <span>
-        名前:{{ comment.name }}<br>
-        内容:{{ comment.index}}<br>
-        投稿時間:{{ comment.created.toDate() | dateFilter}}
-      </span>
+      <div>
+        名前:{{ comment.name }}<br />
+        内容:{{ comment.index }}<br />
+        投稿時間:{{ comment.created.toDate() | dateFilter }}
+      </div>
     </span>
     <form @submit.prevent="add">
       <div>
         <div>
-          <label>
-            名前
-          </label>
+          <label> 名 </label>
         </div>
-        <input v-model="name">
+        <input v-model="name" />
         <div>
-          <label>
-            内容
-          </label>
+          <label> 内容 </label>
         </div>
-        <input v-model="index">
+        <input v-model="index" />
       </div>
-      <button>投稿する</button> 
+      <button>投稿する</button>
     </form>
   </div>
 </template>
 
 <script>
-import Header from '../components/header';
-import TotallNumber from '../components/TotallNumber';
-import SingleNumber from '../components/SingleNumber';
-
+import Header from '../components/header'
+import TotallNumber from '../components/TotallNumber'
+import SingleNumber from '../components/SingleNumber'
 
 export default {
   components: {
@@ -50,37 +40,41 @@ export default {
     TotallNumber,
     SingleNumber,
   },
-  data () {
+  filters: {
+    dateFilter(date) {
+      let moment
+      return moment(date).format('YYYY/MM/DD HH:mm:ss')
+    },
+  },
+  data() {
     return {
       num: 0,
       name: '',
       index: '',
-      done: false
-    }
-  },
-  created: function() {
-    this.$store.dispatch('comments/init')
-  },
-  methods: {
-    add() {
-      this.$store.dispatch('comments/add', {index: this.index, name: this.name})
-      this.name = ''
-      this.index = ''
+      done: false,
     }
   },
   computed: {
     comments() {
       return this.$store.getters['comments/orderdComments']
-    }
+    },
   },
-  filters: {
-    dateFilter: function(date) {
-      return moment(date).format('YYYY/MM/DD HH:mm:ss')
-    }
-  }
-};
+  created() {
+    this.$store.dispatch('comments/init')
+  },
+  methods: {
+    add() {
+      this.$store.dispatch('comments/add', {
+        index: this.index,
+        name: this.name,
+      })
+      this.name = ''
+      this.index = ''
+    },
+  },
+}
 </script>
 
-<style scoped>
+<style scoped></style>
 
-</style>
+// v-for="comment in comments" :key="comment.id"

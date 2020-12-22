@@ -13,10 +13,15 @@ module.exports = {
     'prettier/vue',
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
-    // 'gsap/recommended',
+    'eslint:recommended',
   ],
   plugins: ['prettier'],
   rules: {
-    'quotes': [ERROR, 'single']
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+      },
+    ],
   },
 }
