@@ -1,4 +1,4 @@
-export default {
+module.default = {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
@@ -39,12 +39,12 @@ export default {
   modules: ['@nuxtjs/dotenv', '@nuxtjs/vuetify'],
   devModules: ['@nuxtjs/vuetify'],
   // Build Configuration (https://go.nuxtjs.dev/config-build)
+  srcDir: 'nuxt-app',
   build: {
-    // plugins: [
-    //   new webpack.providePlugin({
-    //     '_': 'lodash'
-    //   })
-    // ],
+    /*
+     * You can extend webpack config here */
+    publicPath: '/assets/',
+    extend(config, ctx) {},
   },
   generate: {
     dir: 'dist',
