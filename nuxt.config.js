@@ -21,7 +21,6 @@ export default {
     {
       src: '@/plugins/plugin',
       mode: 'client'
-
     }
   ],
 
@@ -32,14 +31,39 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/vuetify',
+    // Simple usage
+    '@nuxtjs/vuetify'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/vuetify',
+  ],
+  devModules: [
+    '@nuxtjs/vuetify'
   ],
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    // plugins: [
+    //   new webpack.providePlugin({
+    //     '_': 'lodash'
+    //   })
+    // ],
+  },
+  generate: {
+    dir: 'dist'
+  }
+}
+
+module.exports = {
+  modules: [
+    '@nuxtjs/vuetify'
+  ],
+  vuetify: {
+
+    theme: {
+
+    }
+  }
 }
