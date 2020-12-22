@@ -1,7 +1,5 @@
 <template>
-  <div
-    v-for="comment in comments" :key="comment.id"
-  >
+  <div>
     <Header />
     <v-card
     class="card"
@@ -12,11 +10,11 @@
     </v-card>
     <input v-model.number="num" type="number">
     <span v-if="comment.created">
-      <span>
-        名前:{{ comment.name }}<br>
-        内容:{{ comment.index}}<br>
-        投稿時間:{{ comment.created.toDate() | dateFilter}}
-      </span>
+    <div>
+      名前:{{ comment.name }}<br>
+      内容:{{ comment.index}}<br>
+      投稿時間:{{ comment.created.toDate() | dateFilter}}
+    </div>
     </span>
     <form @submit.prevent="add">
       <div>
@@ -84,3 +82,5 @@ export default {
 <style scoped>
 
 </style>
+
+    // v-for="comment in comments" :key="comment.id"
