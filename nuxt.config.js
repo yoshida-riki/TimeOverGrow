@@ -51,6 +51,9 @@ export default {
     //   })
     // ],
   },
+  generate: {
+    dir: 'dist'
+  }
 }
 
 module.exports = {

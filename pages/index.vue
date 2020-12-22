@@ -10,7 +10,7 @@
         :value="num"/>
       <SingleNumber />
     </v-card>
-    <input v-model.number='num' type="number">
+    <input v-model.number="num" type="number">
     <span v-if="comment.created">
       <span>
         名前:{{ comment.name }}<br>
