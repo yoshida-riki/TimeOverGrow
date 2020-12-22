@@ -16,7 +16,7 @@
     <form @submit.prevent="add">
       <div>
         <div>
-          <label> 名 </label>
+          <label> 名前 </label>
         </div>
         <input v-model="name" />
         <div>
