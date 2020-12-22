@@ -22,7 +22,7 @@
       <div>
         <div>
           <label>
-            名前
+            名
           </label>
         </div>
         <input v-model="name">
