@@ -44,6 +44,7 @@ module.default = {
     /*
      * You can extend webpack config here */
     publicPath: '/assets/',
+    buildDir: 'nuxt-dist',
     extend(config, ctx) {},
   },
   generate: {
