@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "nuxt build && npm run build:copy:ssr",
+    "build:copy:ssr": "rimraf functions/ssr && mkdirp functions/ssr && cp -R .nuxt/dist functions/ssr/dist",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "serve": "npm run build && firebase serve --only functions",
@@ -16,7 +17,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": "14.15.1"
+    "node": "14"
   },
   "main": "lib/index.js",
   "dependencies": {
