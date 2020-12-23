@@ -5,11 +5,16 @@
     ]
   },
   "hosting": {
-    "public": "public",
+    "public": "dist/pages/index.vue",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.vue"
+      }
     ]
-  }
 }
