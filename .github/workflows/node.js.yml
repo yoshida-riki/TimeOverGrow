@@ -30,6 +30,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: npm install, generate
+    - run: npm install
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - name: OverTimeGrow
+      uses: w9jds/firebase-action@master
+      with:
+        args: deploy
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
