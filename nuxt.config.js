@@ -46,7 +46,7 @@ export default {
     //   })
     // ],
   },
-  generate: {
-    dir: 'dist',
-  },
+  // generate: {
+  //   dir: 'dist',
+  // },
 }
