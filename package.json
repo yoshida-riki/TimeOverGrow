@@ -10,11 +10,9 @@
     "generate": "nuxt generate",
     "serve": "npm run build && firebase serve --only functions",
     "shell": "npm run build && firebase functions:shell",
-    "logs": "firebase functions:log",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "yarn lint:js --fix",
-    "test": "jest",
-    "deploy": "firebase deploy"
+    "test": "jest"
   },
   "engines": {
     "node": "14"
@@ -24,8 +22,6 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "animated-number-vue": "^1.0.0",
     "core-js": "^3.6.5",
-    "firebase": "^8.2.1",
-    "firebase-tools": "^9.0.1",
     "moment": "^2.24.0",
     "nuxt": "^2.14.6",
     "save": "^2.4.0",
