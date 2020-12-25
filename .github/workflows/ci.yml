@@ -20,15 +20,12 @@ jobs:
     - name: setup Node
       uses: actions/setup-node@v1
       with: 
-        node-version: 10.x
+        node-version: 14.x
         registry-url: 'https://registry.npmjs.org'
     - name: Install Dependencies
       run: npm install
     - name: TimeOverGrow
       run: npm run build
-    - name: deploy to Firebase Hosting
-      run: |
-        yarn deploy --token=${{ secrets.FIREBASE_TOKEN }}
   ci:
     runs-on: ${{ matrix.os }}
 
