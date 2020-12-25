@@ -49,5 +49,6 @@ module.default = {
   },
   generate: {
     dir: 'dist',
+    fallback: true,
   },
 }
