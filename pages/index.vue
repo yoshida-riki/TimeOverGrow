@@ -6,13 +6,13 @@
       <SingleNumber />
     </v-card>
     <input v-model.number="num" type="number" />
-    <span v-if="comment.created">
+    <!-- <span v-if="comment.created">
       <div>
         名前:{{ comment.name }}<br />
         内容:{{ comment.index }}<br />
         投稿時間:{{ comment.created.toDate() | dateFilter }}
       </div>
-    </span>
+    </span> -->
     <form @submit.prevent="add">
       <div>
         <div>
@@ -59,22 +59,20 @@ export default {
       return this.$store.getters['comments/orderdComments']
     },
   },
-  created() {
-    this.$store.dispatch('comments/init')
-  },
-  methods: {
-    add() {
-      this.$store.dispatch('comments/add', {
-        index: this.index,
-        name: this.name,
-      })
-      this.name = ''
-      this.index = ''
-    },
-  },
+  // created() {
+  //   this.$store.dispatch('comments/init')
+  // },
+  // methods: {
+  //   add() {
+  //     this.$store.dispatch('comments/add', {
+  //       index: this.index,
+  //       name: this.name,
+  //     })
+  //     this.name = ''
+  //     this.index = ''
+  //   },
+  // },
 }
 </script>
 
-<style scoped></style>
-
-// v-for="comment in comments" :key="comment.id"
+<style></style>
