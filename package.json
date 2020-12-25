@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build && npm run build:copy:ssr",
-    "build:copy:ssr": "rimraf functions/ssr && mkdirp functions/ssr && cp -R .nuxt/dist functions/ssr/dist",
+    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "serve": "npm run build && firebase serve --only functions",
