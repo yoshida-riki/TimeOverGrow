@@ -1,40 +1,47 @@
 <template>
   <div>
-    <Header />
-    <v-card class="card">
-      <TotallNumber :value="num" />
-      <SingleNumber />
-    </v-card>
-    <input v-model.number="num" type="number" />
-    <!-- <span v-if="comment.created">
-      <div>
-        名前:{{ comment.name }}<br />
-        内容:{{ comment.index }}<br />
-        投稿時間:{{ comment.created.toDate() | dateFilter }}
-      </div>
-    </span> -->
-    <form @submit.prevent="add">
-      <div>
+    <client-only>
+      <Header />
+      <router-view></router-view>
+      <v-card class="card">
+        <totall-number :value="num" />
+        <single-number />
+      </v-card>
+      <input v-model.number="num" type="number" />
+      <!-- <span v-if="comment.created">
         <div>
-          <label> 名前 </label>
+          名前:{{ comment.name }}<br />
+          内容:{{ comment.index }}<br />
+          投稿時間:{{ comment.created.toDate() | dateFilter }}
         </div>
-        <input v-model="name" />
+      </span> -->
+      <form @submit.prevent="add">
         <div>
-          <label> 内容 </label>
+          <div>
+            <label> 名前 </label>
+          </div>
+          <input v-model="name" />
+          <div>
+            <label> 内容 </label>
+          </div>
+          <input v-model="index" />
         </div>
-        <input v-model="index" />
-      </div>
-      <button>投稿する</button>
-    </form>
+        <button>投稿する</button>
+      </form>
+    </client-only>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuetify from 'vuetify'
 import Header from '../components/header'
 import TotallNumber from '../components/TotallNumber'
 import SingleNumber from '../components/SingleNumber'
 
+Vue.use(Vuetify)
 export default {
+  name: 'TimeOverGrow',
   components: {
     Header,
     TotallNumber,
@@ -54,11 +61,11 @@ export default {
       done: false,
     }
   },
-  computed: {
-    comments() {
-      return this.$store.getters['comments/orderdComments']
-    },
-  },
+  // computed: {
+  //   comments() {
+  //     return this.$store.getters['comments/orderdComments']
+  //   },
+  // },
   // created() {
   //   this.$store.dispatch('comments/init')
   // },
@@ -73,6 +80,19 @@ export default {
   //   },
   // },
 }
+// describe('pages/index.vue', () => {
+//   let vuetify
+//   let wrapper
+
+//   beforeEach(() => {
+//     vuetify = new Vuetify()
+//     // これを追加
+//     localVue.use(vuetify)
+//     wrapper = mount(IndexPage, {
+//       localVue
+//     })
+//   })
+// })
 </script>
 
 <style></style>
