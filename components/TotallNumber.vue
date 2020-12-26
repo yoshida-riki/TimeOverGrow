@@ -1,12 +1,14 @@
 <template>
-  <v-card class="mx-0 my-12" max-width="374">
-    <v-img height="350" :v-bind:src="image_src"></v-img>
+  <client-only>
+    <v-card class="mx-0 my-12" max-width="374">
+      <v-img height="350" :v-bind:src="image_src"></v-img>
 
-    <v-card-title>どんどん継続！！！</v-card-title>
-    {{ totall_number }}
+      <v-card-title>どんどん継続！！！</v-card-title>
+      {{ totall_number }}
 
-    <v-divider class="mx-4"></v-divider>
-  </v-card>
+      <v-divider class="mx-4"></v-divider>
+    </v-card>
+  </client-only>
 </template>
 
 <script>

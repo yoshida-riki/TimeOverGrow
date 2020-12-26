@@ -2,10 +2,9 @@
   <div>
     <client-only>
       <Header />
-      <router-view></router-view>
       <v-card class="card">
-        <totall-number :value="num" />
-        <single-number />
+        <TotallNumber :value="num" />
+        <SingleNumber />
       </v-card>
       <input v-model.number="num" type="number" />
       <!-- <span v-if="comment.created">
@@ -15,7 +14,7 @@
           投稿時間:{{ comment.created.toDate() | dateFilter }}
         </div>
       </span> -->
-      <form @submit.prevent="add">
+      <v-form @submit.prevent="add">
         <div>
           <div>
             <label> 名前 </label>
@@ -27,7 +26,7 @@
           <input v-model="index" />
         </div>
         <button>投稿する</button>
-      </form>
+      </v-form>
     </client-only>
   </div>
 </template>
