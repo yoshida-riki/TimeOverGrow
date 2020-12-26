@@ -15,7 +15,7 @@ export default {
     },
   ],
   components: true,
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
+  buildModules: ['@nuxtjs/vuetify'],
   srcDir: 'app/',
   build: {
     publicPath: '/assets/',
