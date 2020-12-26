@@ -2,10 +2,9 @@
   <div>
     <client-only>
       <Header />
-      <router-view></router-view>
       <v-card class="card">
-        <totall-number :value="num" />
-        <single-number />
+        <TotallNumber :value="num" />
+        <SingleNumber />
       </v-card>
       <input v-model.number="num" type="number" />
       <!-- <span v-if="comment.created">
