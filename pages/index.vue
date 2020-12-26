@@ -7,13 +7,6 @@
         <SingleNumber />
       </v-card>
       <input v-model.number="num" type="number" />
-      <!-- <span v-if="comment.created">
-        <div>
-          名前:{{ comment.name }}<br />
-          内容:{{ comment.index }}<br />
-          投稿時間:{{ comment.created.toDate() | dateFilter }}
-        </div>
-      </span> -->
       <v-form @submit.prevent="add">
         <div>
           <div>
