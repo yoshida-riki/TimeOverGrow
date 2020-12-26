@@ -1,4 +1,4 @@
-module.default = {
+export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   // ssr: false,
 
@@ -39,7 +39,7 @@ module.default = {
   modules: ['@nuxtjs/dotenv', '@nuxtjs/vuetify'],
   devModules: ['@nuxtjs/vuetify'],
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  srcDir: 'nuxt-app',
+  srcDir: 'app',
   build: {
     /*
      * You can extend webpack config here */
@@ -60,6 +60,7 @@ module.default = {
   performance: {
     hints: false,
   },
+  target: 'static',
   babel: {
     presets({ isServer }) {
       return [

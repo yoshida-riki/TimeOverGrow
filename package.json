@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "npm run build && firebase serve --only functions",
     "build": "nuxt build",
     "lint": "yarn lint:js",
     "dev": "nuxt",

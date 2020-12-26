@@ -14,7 +14,7 @@
           投稿時間:{{ comment.created.toDate() | dateFilter }}
         </div>
       </span> -->
-      <form @submit.prevent="add">
+      <v-form @submit.prevent="add">
         <div>
           <div>
             <label> 名前 </label>
@@ -26,7 +26,7 @@
           <input v-model="index" />
         </div>
         <button>投稿する</button>
-      </form>
+      </v-form>
     </client-only>
   </div>
 </template>
