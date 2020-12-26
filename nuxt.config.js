@@ -47,8 +47,31 @@ module.default = {
     buildDir: 'nuxt-dist',
     extend(config, ctx) {},
   },
-  generate: {
-    dir: 'dist',
-    fallback: true,
+  // configureWebpack: {
+  //   externals: {
+  //     vue: {
+  //       commonjs: 'vue',
+  //       commonjs2: 'vue',
+  //       root: 'Vue',
+  //       amd: 'vue',
+  //     },
+  //   },
+  // },
+  performance: {
+    hints: false,
+  },
+  babel: {
+    presets({ isServer }) {
+      return [
+        [
+          require.resolve('@nuxt/babel-preset-app'),
+          // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+          {
+            buildTarget: isServer ? 'server' : 'client',
+            corejs: { version: 3 },
+          },
+        ],
+      ]
+    },
   },
 }
