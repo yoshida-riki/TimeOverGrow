@@ -3,8 +3,10 @@
     <client-only>
       <Header />
       <v-card class="card">
+        <!-- flexで横並び -->
         <TotallNumber :value="num" />
         <SingleNumber />
+
       </v-card>
       <input v-model.number="num" type="number" />
       <v-form @submit.prevent="add">
@@ -25,9 +27,10 @@
 </template>
 
 <script>
+import 'normalize.css'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import Header from '../components/header'
+import Header from '../layouts/Header'
 import TotallNumber from '../components/TotallNumber'
 import SingleNumber from '../components/SingleNumber'
 
