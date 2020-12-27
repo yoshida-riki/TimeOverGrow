@@ -6,21 +6,11 @@
         <!-- flexで横並び -->
         <TotallNumber :value="num" />
         <SingleNumber />
-
       </v-card>
       <input v-model.number="num" type="number" />
       <v-form @submit.prevent="add">
-        <div>
-          <div>
-            <label> 名前 </label>
-          </div>
-          <input v-model="name" />
-          <div>
-            <label> 内容 </label>
-          </div>
-          <input v-model="index" />
-        </div>
-        <button>投稿する</button>
+        <Textbox />
+        <Button />
       </v-form>
     </client-only>
   </div>
@@ -33,6 +23,10 @@ import Vuetify from 'vuetify'
 import Header from '../layouts/Header'
 import TotallNumber from '../components/TotallNumber'
 import SingleNumber from '../components/SingleNumber'
+import Textbox from '../components/Textbox'
+import Button from '../components/Button'
+
+
 
 Vue.use(Vuetify)
 export default {
@@ -41,6 +35,8 @@ export default {
     Header,
     TotallNumber,
     SingleNumber,
+    Textbox,
+    Button,
   },
   filters: {
     dateFilter(date) {
@@ -90,4 +86,4 @@ export default {
 // })
 </script>
 
-<style></style>
+<style scoped></style>
