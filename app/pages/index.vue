@@ -9,8 +9,8 @@
       </v-card>
       <input v-model.number="num" type="number" />
       <!-- <v-form @submit.prevent="add"> -->
-        <Textbox :onPost="addMessage"/>
-        <MessageList :messages="reversedMessages"/>
+      <Textbox :on-post="addMessage" />
+      <MessageList :messages="reversedMessages" />
       <!-- </v-form> -->
     </client-only>
   </div>
@@ -42,19 +42,19 @@ export default {
       name: '',
       index: '',
       done: false,
-      messages: []
-    };
+      messages: [],
+    }
   },
   computed: {
     reversedMessages() {
-      return this.messages.slice().reverse();
-    }
+      return this.messages.slice().reverse()
+    },
   },
   methods: {
     addMessage(message) {
-      this.messages.push(message);
-    }
-  }
+      this.messages.push(message)
+    },
+  },
   // filters: {
   //   dateFilter(date) {
   //     let moment

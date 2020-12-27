@@ -1,12 +1,12 @@
 <template>
   <v-btn
-  elevation="11"
-  large
-  outlined
-  small
-  x-large
-  class="button"
-  @click="onClick"
+    elevation="11"
+    large
+    outlined
+    small
+    x-large
+    class="button"
+    @click="onClick"
   >
     {{ title }}
   </v-btn>
@@ -17,16 +17,14 @@ export default {
   props: {
     title: {
       type: String,
-      default: '投稿'
+      default: '投稿',
     },
     onClick: {
       type: Function,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

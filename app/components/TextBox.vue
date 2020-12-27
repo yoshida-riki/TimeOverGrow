@@ -1,15 +1,12 @@
 <template>
   <div class="textbox-container">
     <textarea
+      v-model.trim="body"
       placeholder=""
       class="textbox-input"
-      v-model.trim="body"
     ></textarea>
     <div class="textbox-button">
-      <Button
-        title="投稿"
-        :onClick="post"
-      />
+      <Button title="投稿" :on-click="post" />
     </div>
   </div>
 </template>
@@ -24,32 +21,32 @@ export default {
   props: {
     onPost: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      body: ''
+      body: '',
     }
   },
   methods: {
     post() {
       if (!this.body) {
-        alert('何か入力してください');
-        return;
+        alert('何か入力してください')
+        return
       }
 
-      const newMessage = this.createMessage();
-      this.onPost(newMessage);
-      this.body = '';
+      const newMessage = this.createMessage()
+      this.onPost(newMessage)
+      this.body = ''
     },
     createMessage() {
       return {
         date: new Date().toLocaleString(),
-        body: this.body
+        body: this.body,
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
