@@ -17,6 +17,7 @@
     "animated-number-vue": "^1.0.0",
     "core-js": "^3.8.1",
     "moment": "^2.29.1",
+    "normalize.css": "^8.0.1",
     "nuxt": "^2.14.12",
     "save": "^2.4.0",
     "semver": "^7.3.4",
