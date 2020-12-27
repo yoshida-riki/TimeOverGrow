@@ -8,10 +8,10 @@
         <SingleNumber />
       </v-card>
       <input v-model.number="num" type="number" />
-      <v-form @submit.prevent="add">
-        <Textbox />
-        <Button />
-      </v-form>
+      <!-- <v-form @submit.prevent="add"> -->
+        <Textbox :onPost="addMessage"/>
+        <MessageList :messages="reversedMessages"/>
+      <!-- </v-form> -->
     </client-only>
   </div>
 </template>
@@ -24,9 +24,7 @@ import Header from '../layouts/Header'
 import TotallNumber from '../components/TotallNumber'
 import SingleNumber from '../components/SingleNumber'
 import Textbox from '../components/Textbox'
-import Button from '../components/Button'
-
-
+import MessageList from '../components/MessageList'
 
 Vue.use(Vuetify)
 export default {
@@ -36,13 +34,7 @@ export default {
     TotallNumber,
     SingleNumber,
     Textbox,
-    Button,
-  },
-  filters: {
-    dateFilter(date) {
-      let moment
-      return moment(date).format('YYYY/MM/DD HH:mm:ss')
-    },
+    MessageList,
   },
   data() {
     return {
@@ -50,8 +42,26 @@ export default {
       name: '',
       index: '',
       done: false,
+      messages: []
+    };
+  },
+  computed: {
+    reversedMessages() {
+      return this.messages.slice().reverse();
     }
   },
+  methods: {
+    addMessage(message) {
+      this.messages.push(message);
+    }
+  }
+  // filters: {
+  //   dateFilter(date) {
+  //     let moment
+  //     return moment(date).format('YYYY/MM/DD HH:mm:ss')
+  //   },
+  // },
+
   // computed: {
   //   comments() {
   //     return this.$store.getters['comments/orderdComments']

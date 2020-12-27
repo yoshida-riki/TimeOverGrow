@@ -6,18 +6,50 @@
       v-model.trim="body"
     ></textarea>
     <div class="textbox-button">
-      <!-- ボタン記述 -->
+      <Button
+        title="投稿"
+        :onClick="post"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import Button from './Button'
+
 export default {
+  components: {
+    Button,
+  },
+  props: {
+    onPost: {
+      type: Function,
+      required: true
+    }
+  },
   data() {
     return {
       body: ''
     }
   },
+  methods: {
+    post() {
+      if (!this.body) {
+        alert('何か入力してください');
+        return;
+      }
+
+      const newMessage = this.createMessage();
+      this.onPost(newMessage);
+      this.body = '';
+    },
+    createMessage() {
+      return {
+        date: new Date().toLocaleString(),
+        body: this.body
+      }
+    }
+  }
 }
 </script>
 
