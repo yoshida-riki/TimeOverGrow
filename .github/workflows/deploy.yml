@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -27,10 +30,19 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: npm install and build
-        run: |
-          npm install
-          npm run build
+      # - name: npm install and build
+      #   run: |
+      #     npm install
+      #     npm run build
+
+      - name: Install dependencies 👨🏻‍💻
+        run: yarn
+
+      - name: Run linter 👀
+        run: yarn lint
+
+      - name: Run tests 🧪
+        run: yarn test
 
       - name: Deploy to netlify
         run: npx netlify-cli deploy --dir=./dist
