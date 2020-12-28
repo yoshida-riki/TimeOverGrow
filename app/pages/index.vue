@@ -25,6 +25,7 @@ import TotallNumber from '../components/TotallNumber'
 import SingleNumber from '../components/SingleNumber'
 import Textbox from '../components/Textbox'
 import MessageList from '../components/MessageList'
+import MessageModel from '../models/Message'
 
 Vue.use(Vuetify)
 export default {
@@ -50,10 +51,24 @@ export default {
       return this.messages.slice().reverse()
     },
   },
+  async created() {
+    const messages = await this.fetchMessages();
+    this.messages = messages;
+  },
   methods: {
     addMessage(message) {
       this.messages.push(message)
     },
+    async fetchMessages() {
+      let messages = [];
+      try {
+        messages = await MessageModel.fetchMessages();
+      } catch (error) {
+        alert(error.message);
+      }
+
+      return messages;
+    }
   },
   // filters: {
   //   dateFilter(date) {
