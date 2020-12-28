@@ -22,7 +22,7 @@
       >
         投稿データ0件
       </p>
-      <MessageList v-else :messages="reversedMessages" />
+      <MessageList v-else :messages="reversedMessages" class="container" />
     </client-only>
   </div>
 </template>
