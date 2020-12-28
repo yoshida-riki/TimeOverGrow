@@ -6,7 +6,9 @@
     small
     x-large
     class="button"
+    :class="{disabled: !clickable}"
     @click="onClick"
+    :disabled="!clickable"
   >
     {{ title }}
   </v-btn>
@@ -23,8 +25,16 @@ export default {
       type: Function,
       required: true,
     },
-  },
+    clickable: {
+      type: Boolean,
+      default: true,
+    }
+  }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.disabled {
+  opacity: 0.3;
+}
+</style>

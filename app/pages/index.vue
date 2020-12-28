@@ -4,14 +4,19 @@
       <Header />
       <v-card class="card">
         <!-- flexで横並び -->
-        <TotallNumber :value="num" />
-        <SingleNumber />
+        <TotallTime :value="num" />
+        <Chart />
       </v-card>
       <input v-model.number="num" type="number" />
-      <!-- <v-form @submit.prevent="add"> -->
       <Textbox :on-post="addMessage" />
-      <MessageList :messages="reversedMessages" />
-      <!-- </v-form> -->
+      <Spinner v-if="!initialLoaded" />
+      <p
+        class="no-messages"
+        v-else-if="initialLoaded && messages.length === 0"
+      >
+        投稿データ0件
+      </p>
+      <MessageList v-else :messages="reversedMessages" />
     </client-only>
   </div>
 </template>
@@ -21,11 +26,12 @@ import 'normalize.css'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import Header from '../layouts/Header'
-import TotallNumber from '../components/TotallNumber'
-import SingleNumber from '../components/SingleNumber'
+import TotallTime from '../components/TotallTime'
+import Chart from '../components/Chart'
 import Textbox from '../components/Textbox'
 import MessageList from '../components/MessageList'
 import MessageModel from '../models/Message'
+import Spinner from '../components/Spinner'
 
 Vue.use(Vuetify)
 export default {
@@ -33,9 +39,10 @@ export default {
   components: {
     Header,
     TotallNumber,
-    SingleNumber,
+    Chart,
     Textbox,
     MessageList,
+    Spinner,
   },
   data() {
     return {
@@ -44,6 +51,7 @@ export default {
       index: '',
       done: false,
       messages: [],
+      initialLoaded: false
     }
   },
   computed: {
@@ -54,6 +62,7 @@ export default {
   async created() {
     const messages = await this.fetchMessages();
     this.messages = messages;
+    this.initialLoaded = true;
   },
   methods: {
     addMessage(message) {
@@ -111,4 +120,8 @@ export default {
 // })
 </script>
 
-<style scoped></style>
+<style scoped>
+.no-messages {
+  text-align: center;
+}
+</style>
