@@ -10,7 +10,7 @@ class Message {
 
   static async save({ body }) {
     if (!body || !body.trim()) {
-      throw new Error('bodyはstring型で1文字以上の入力必須です');
+      throw new Error('入力欄が空欄です。');
     }
 
     const postData = {

@@ -4,7 +4,7 @@
       <v-img height="350" :src="image_src"></v-img>
 
       <!-- <v-card-title>どんどん継続！！！</v-card-title> -->
-      {{ totall_number }}
+      {{ totall_time }}
 
       <v-divider class="mx-4"></v-divider>
     </v-card>
@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      totall_number: 0,
+      totall_time: 0,
       image_src: require('@/assets/Upgrade.png'),
     }
   },
@@ -32,7 +32,7 @@ export default {
       const animate = () => {
         timeCnt++
         if (timeCnt <= 60) {
-          this.totall_number =
+          this.totall_time =
             Math.floor(((newValue - oldValue) * timeCnt) / 60) + oldValue
           timer = setTimeout(() => {
             animate()
@@ -40,14 +40,14 @@ export default {
         } else {
           clearTimeout(timer)
           timer = null
-          this.totall_number = newValue
+          this.totall_time = newValue
         }
       }
       animate()
     },
   },
   mounted() {
-    this.totall_number = this.value
+    this.totall_time = this.value
   },
 }
 </script>
