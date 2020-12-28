@@ -20,4 +20,7 @@ export default {
 h1 {
   margin: 0 auto;
 }
+.header {
+  margin-bottom: 3vw;
+}
 </style>
