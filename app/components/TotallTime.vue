@@ -1,12 +1,10 @@
 <template>
   <client-only>
-    <v-card class="mx-0 my-12" max-width="374">
+    <v-card max-width="374" style="margin: 0 auto;">
       <v-img height="350" :src="image_src"></v-img>
-
       <!-- <v-card-title>どんどん継続！！！</v-card-title> -->
       {{ totall_time }}
-
-      <v-divider class="mx-4"></v-divider>
+      <!-- <v-divider class="mx-4"></v-divider> -->
     </v-card>
   </client-only>
 </template>

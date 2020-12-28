@@ -2,21 +2,27 @@
   <div>
     <client-only>
       <Header />
-      <v-card class="card">
-        <!-- flexで横並び -->
-        <TotallTime :value="num" />
-        <Chart />
-      </v-card>
+      <v-row class="container d-flex justify-center">
+        <v-col cols="12" sm="6" md="4">
+          <TotallTime :value="num" />
+        </v-col>
+        <v-col cols="12" sm="6" md="8">
+          <Chart
+            style="width: 100%;"
+          />
+        </v-col>
+      </v-row>
+
       <input v-model.number="num" type="number" />
-      <Textbox :on-post="addMessage" />
-      <Spinner v-if="!initialLoaded" />
+      <Textbox :on-post="addMessage" class="container" />
+      <Spinner v-if="!initialLoaded" class="container" />
       <p
         class="no-messages"
         v-else-if="initialLoaded && messages.length === 0"
       >
         投稿データ0件
       </p>
-      <MessageList v-else :messages="reversedMessages" />
+      <MessageList v-else :messages="reversedMessages" class="container" />
     </client-only>
   </div>
 </template>
@@ -38,7 +44,7 @@ export default {
   name: 'TimeOverGrow',
   components: {
     Header,
-    TotallNumber,
+    TotallTime,
     Chart,
     Textbox,
     MessageList,
@@ -50,6 +56,10 @@ export default {
       name: '',
       index: '',
       done: false,
+      // options: {
+      //   maintainAspectRatio: false,
+      // },
+      // width: window.innerWidth / 2,
       messages: [],
       initialLoaded: false
     }
@@ -123,5 +133,9 @@ export default {
 <style scoped>
 .no-messages {
   text-align: center;
+}
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
 }
 </style>
