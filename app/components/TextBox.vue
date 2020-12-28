@@ -13,6 +13,7 @@
 
 <script>
 import Button from './Button'
+import MessageModel from '../models/Message'
 
 export default {
   components: {
@@ -30,20 +31,15 @@ export default {
     }
   },
   methods: {
-    post() {
-      if (!this.body) {
-        alert('何か入力してください')
-        return
-      }
-
-      const newMessage = this.createMessage()
-      this.onPost(newMessage)
-      this.body = ''
-    },
-    createMessage() {
-      return {
-        date: new Date().toLocaleString(),
-        body: this.body,
+    async post() {
+      try {
+        const message = await MessageModel.save({
+          body: this.body
+        });
+        this.onPost(message);
+        this.body = '';
+      } catch (error) {
+        alert(error.message);
       }
     },
   },

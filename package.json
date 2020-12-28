@@ -16,6 +16,7 @@
     "@nuxtjs/vuetify": "^1.11.2",
     "animated-number-vue": "^1.0.0",
     "core-js": "^3.8.1",
+    "firebase": "^8.2.1",
     "moment": "^2.29.1",
     "netlify-cli": "^2.69.11",
     "normalize.css": "^8.0.1",
