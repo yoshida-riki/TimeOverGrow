@@ -1,13 +1,18 @@
 <template>
-  <div class="message">
+  <v-card class="message">
+    <p class="message-text">{{ time }}時間</p>
     <div class="message-date">{{ date }}</div>
     <p class="message-text">{{ body }}</p>
-  </div>
+  </v-card>
 </template>
 
 <script>
 export default {
   props: {
+    time: {
+      type: Number,
+      required: true,
+    },
     body: {
       type: String,
       required: true,
@@ -25,6 +30,7 @@ export default {
   border-bottom: 1px solid black;
   min-height: 80px;
   padding: 10px;
+  margin: 0 5vw;
 }
 
 .message:hover {

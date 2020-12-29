@@ -4,7 +4,6 @@ import { Bar } from 'vue-chartjs'
 
 export default {
   extends: Bar,
-  // props: ['totall_time'],
   data(){
     return {
       chartdata: {
@@ -48,7 +47,7 @@ export default {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              return tooltipItem.yLabel + ' h'; // ツールチップに'点'を付ける
+              return tooltipItem.yLabel + ' h';
             }
           }
         }
