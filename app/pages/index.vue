@@ -13,7 +13,7 @@
         </v-col>
       </v-row>
 
-      <input v-model.number="num" type="number" />
+      <!-- <input v-model.number="num" type="number" /> -->
 
       <Textbox :on-post="addMessage" class="container" />
       <Spinner v-if="!initialLoaded" class="container" />

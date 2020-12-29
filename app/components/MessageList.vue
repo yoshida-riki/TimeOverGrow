@@ -1,7 +1,7 @@
 <template>
   <div class="message-list">
     <template v-for="(message, index) in messages">
-      <Message :key="index" :body="message.body" :date="message.date" />
+      <Message :key="index" :time="message.time" :body="message.body" :date="message.date" />
     </template>
   </div>
 </template>
@@ -19,6 +19,9 @@ export default {
       required: true,
       validator(messages) {
         return messages.every((message) => {
+          if (typeof message.time !== 'number') {
+          return false
+          }
           if (typeof message.date !== 'string') {
             return false
           }
@@ -34,4 +37,5 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

@@ -2,18 +2,24 @@ import firebase from 'firebase'
 import { dbMessages } from '../db'
 
 class Message {
-  constructor ({id, body, date}) {
+  constructor ({id, time, body, date}) {
     this.id = id;
+    this.time = time;
     this.body = body;
     this.date = date;
   }
 
-  static async save({ body }) {
+  static async save({ time, body }) {
+    if (!time || !time.trim()) {
+      throw new Error('入力欄が空欄です。');
+    }
+
     if (!body || !body.trim()) {
       throw new Error('入力欄が空欄です。');
     }
 
     const postData = {
+      time,
       body,
       date: firebase.firestore.FieldValue.serverTimestamp()
     };
@@ -40,6 +46,7 @@ class Message {
   static create(id, data) {
     return new Message({
       id,
+      time: data.time,
       body: data.body,
       date: data.date.toDate().toLocaleString()
     });
