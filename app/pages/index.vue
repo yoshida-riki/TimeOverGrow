@@ -14,6 +14,7 @@
       </v-row>
 
       <input v-model.number="num" type="number" />
+
       <Textbox :on-post="addMessage" class="container" />
       <Spinner v-if="!initialLoaded" class="container" />
       <p
@@ -56,10 +57,6 @@ export default {
       name: '',
       index: '',
       done: false,
-      // options: {
-      //   maintainAspectRatio: false,
-      // },
-      // width: window.innerWidth / 2,
       messages: [],
       initialLoaded: false
     }
@@ -89,45 +86,7 @@ export default {
       return messages;
     }
   },
-  // filters: {
-  //   dateFilter(date) {
-  //     let moment
-  //     return moment(date).format('YYYY/MM/DD HH:mm:ss')
-  //   },
-  // },
-
-  // computed: {
-  //   comments() {
-  //     return this.$store.getters['comments/orderdComments']
-  //   },
-  // },
-  // created() {
-  //   this.$store.dispatch('comments/init')
-  // },
-  // methods: {
-  //   add() {
-  //     this.$store.dispatch('comments/add', {
-  //       index: this.index,
-  //       name: this.name,
-  //     })
-  //     this.name = ''
-  //     this.index = ''
-  //   },
-  // },
 }
-// describe('pages/index.vue', () => {
-//   let vuetify
-//   let wrapper
-
-//   beforeEach(() => {
-//     vuetify = new Vuetify()
-//     // これを追加
-//     localVue.use(vuetify)
-//     wrapper = mount(IndexPage, {
-//       localVue
-//     })
-//   })
-// })
 </script>
 
 <style scoped>
