@@ -32,11 +32,9 @@ export default {
   padding: 10px;
   margin: 0 5vw;
 }
-
 .message:hover {
   background-color: #eee;
 }
-
 .message-date {
   font-size: 0.8em;
   color: #777;

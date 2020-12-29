@@ -2,6 +2,10 @@
   <div class="textbox-container">
       <input
         v-model.trim="time"
+        type="number"
+        max="24"
+        min="0.25"
+        step="0.25"
         placeholder=""
       />
       <textarea
