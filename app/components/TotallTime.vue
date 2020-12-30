@@ -2,21 +2,21 @@
   <client-only>
     <v-card max-width="374" style="margin: 0 auto;">
       <v-img height="350" :src="image_src"></v-img>
-      <!-- <v-card-title>どんどん継続！！！</v-card-title> -->
-      {{ totall_time }}
-      <!-- <v-divider class="mx-4"></v-divider> -->
+      <p>
+        これまでのトータル学習時間は　{{ totall_time }}
+      </p>
     </v-card>
   </client-only>
 </template>
 
 <script>
 export default {
-  props: {
-    value: {
-      type: Number,
-      required: true,
-    },
-  },
+  // props: {
+  //   value: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  // },
   data() {
     return {
       totall_time: 0,

@@ -50,7 +50,15 @@ class Message {
       body: data.body,
       date: data.date.toDate().toLocaleString()
     });
-  }
+  };
+
+  // 合計学習時間取得
+
+
+
+
+
+
 }
 
 

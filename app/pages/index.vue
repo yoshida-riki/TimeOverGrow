@@ -21,7 +21,7 @@
         class="no-messages"
         v-else-if="initialLoaded && messages.length === 0"
       >
-        投稿データ0件
+        毎日の積み上げ0件
       </p>
       <MessageList v-else :messages="reversedMessages" class="container" />
     </client-only>
