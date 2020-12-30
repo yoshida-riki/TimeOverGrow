@@ -19,7 +19,7 @@ export default {
       required: true,
       validator(messages) {
         return messages.every((message) => {
-          if (typeof message.time !== 'number') {
+          if (typeof message.time !== 'string') {
           return false
           }
           if (typeof message.date !== 'string') {

@@ -1,17 +1,28 @@
 <template>
   <div class="textbox-container">
-      <input
-        v-model.trim="time"
-        placeholder=""
-      />
-      <textarea
-        v-model.trim="body"
-        placeholder=""
-        class="textbox-input"
-      ></textarea>
-      <div class="textbox-button">
-        <Button title="投稿" :on-click="post" :clickable="canPost" />
-      </div>
+    <input
+      v-model.trim="time"
+      class="textbox-input"
+      type="number"
+      max="24"
+      min="0.25"
+      step="0.25"
+      placeholder=""
+    />時間
+    <v-textarea
+      v-model.trim="body"
+      class="textbox-area"
+      label="今日の目標"
+      color="red"
+      flat
+      auto-grow
+      outlined
+      rows="1"
+      row-height="100"
+    ></v-textarea>
+    <div class="textbox-button">
+      <Button title="今日の学習内容送信！！！" :on-click="post" :clickable="canPost" />
+    </div>
   </div>
 </template>
 
@@ -62,11 +73,15 @@ export default {
   padding: 0 5vw;
 }
 .textbox-input {
+  margin: 1vw;
+  border: 1px solid rgb(161, 161, 161);
+}
+.textbox-area {
   width: 100%;
-  height: 100px;
+  /* height: 100px; */
   resize: none;
   background: white;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 5px;
   padding: 0;
 }

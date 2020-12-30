@@ -1,9 +1,12 @@
 <template>
   <v-btn
-    elevation="11"
+    elevation="7"
     large
     outlined
-    small
+    plain
+    raised
+    rounded
+    text
     x-large
     class="button"
     :class="{disabled: !clickable}"
@@ -19,7 +22,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '投稿',
+      default: '今日の学習内容送信！！！',
     },
     onClick: {
       type: Function,
