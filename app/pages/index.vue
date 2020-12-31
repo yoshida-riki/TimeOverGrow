@@ -23,7 +23,7 @@
       >
         毎日の積み上げ0件
       </p>
-      <MessageList v-else :messages="reversedMessages" class="container" />
+      <MessageList  :messages="reversedMessages" class="container" />
     </client-only>
   </div>
 </template>
@@ -69,7 +69,7 @@ export default {
   async created() {
     const messages = await this.fetchMessages();
     this.messages = messages;
-    this.initialLoaded = true;
+    // this.initialLoaded = true;
   },
   methods: {
     addMessage(message) {

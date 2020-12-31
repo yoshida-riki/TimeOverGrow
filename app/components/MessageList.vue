@@ -17,9 +17,9 @@ export default {
     messages: {
       type: Array,
       required: true,
-      validator(messages) {
-        return messages.every((message) => {
-          if (typeof message.time !== 'string') {
+      validator: function(messages) {
+        return messages.every(message => {
+          if (typeof message.time !== 'number') {
           return false
           }
           if (typeof message.date !== 'string') {
@@ -30,7 +30,7 @@ export default {
           }
 
           return true
-        })
+        });
       },
     },
   },

@@ -53,7 +53,7 @@ class Message {
   };
 
   // 合計学習時間取得
-
+  // let value = Number(document.getString(dbMessages));
 
 
 
@@ -61,5 +61,7 @@ class Message {
 
 }
 
+const dbtime = dbMessages.where('time', '>=', '0')
+console.log(dbtime);
 
 export default Message;
