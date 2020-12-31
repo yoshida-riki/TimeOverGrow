@@ -7,12 +7,12 @@
       max="24"
       min="0.25"
       step="0.25"
-      placeholder=""
+      placeholder="3"
     />時間
     <v-textarea
       v-model.trim="body"
       class="textbox-area"
-      label="今日の目標"
+      label="今日のアウトプット内容"
       color="red"
       flat
       auto-grow

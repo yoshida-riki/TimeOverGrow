@@ -10,7 +10,7 @@
 export default {
   props: {
     time: {
-      type: String,
+      type: Number,
       required: true,
     },
     body: {
@@ -27,7 +27,6 @@ export default {
 
 <style scoped>
 .message {
-  /* border-bottom: 1px solid black; */
   min-height: 80px;
   padding: 10px;
   margin: 0 5vw 2vw;
