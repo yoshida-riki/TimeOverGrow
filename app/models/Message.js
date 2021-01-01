@@ -10,7 +10,7 @@ class Message {
   }
 
   static async save({ time, body }) {
-    if (!time || !time.trim()) {
+    if (!time) {
       throw new Error('入力欄が空欄です。');
     }
 
@@ -21,7 +21,7 @@ class Message {
     const postData = {
       time,
       body,
-      date: firebase.firestore.FieldValue.serverTimestamp()
+      date: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
     const docRef = await dbMessages.add(postData);
@@ -29,7 +29,7 @@ class Message {
     const data = snapShot.data();
     const model = this.create(docRef.id, data);
 
-    return module;
+    return model;
   }
 
   static async fetchMessages() {
@@ -53,15 +53,45 @@ class Message {
   };
 
   // 合計学習時間取得
-  // let value = Number(document.getString(dbMessages));
-
-
-
+  // const dbtime = dbMessages.get();
 
 
 }
 
-const dbtime = dbMessages.where('time', '>=', '0')
-console.log(dbtime);
+(async () => {
+  try {
+    // 省略 
+    // (Cloud Firestoreのインスタンスを初期化してdbにセット)
 
+    const querySnapshot = await dbMessages.get() // firebase.firestore.QuerySnapshotのインスタンスを取得
+
+    
+    querySnapshot.forEach((postDoc) => {
+      // console.log(postDoc.id, ' => ', JSON.stringify(postDoc.data().time))
+      
+      console.log(postDoc.data().time);
+
+      // let dbtime = new Set([dbtime.add(postDoc.data().time)]);
+      
+      let dbtime = [];
+      dbtime.push(postDoc.data().time)
+      console.log(dbtime);
+      return dbtime
+    })
+    console.log(dbtime);
+
+    // console.log(querySnapshot.postData.data().time);
+
+    // const dbtime = postDoc.data().time;
+    // if (dbtime) {
+    //   for (let index = 0; index < array.length; index++) {
+    //     const element = array[index];
+        
+    //   }
+    // }
+
+    await db.app.delete()
+  } catch (err) {
+  }
+})()
 export default Message;

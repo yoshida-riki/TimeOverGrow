@@ -69,7 +69,7 @@ export default {
   async created() {
     const messages = await this.fetchMessages();
     this.messages = messages;
-    // this.initialLoaded = true;
+    this.initialLoaded = true;
   },
   methods: {
     addMessage(message) {
