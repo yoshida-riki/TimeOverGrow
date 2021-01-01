@@ -1,6 +1,6 @@
 <template>
   <div class="message-list">
-    <template v-for="(message, index) in messages">
+    <template v-for="(message, time, index) in messages">
       <Message :key="index" :time="message.time" :body="message.body" :date="message.date" />
     </template>
   </div>

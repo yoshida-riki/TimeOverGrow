@@ -52,7 +52,8 @@ export default {
       this.canPost = false;
       try {
         const message = await MessageModel.save({
-          time: this.time,
+          //ここを改善したらFirestoreにNumber型が保存される様になった
+          time: Number(this.time),
           body: this.body
         });
         this.onPost(message);
