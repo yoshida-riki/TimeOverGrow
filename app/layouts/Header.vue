@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'TimeOverGrow',
   data() {
     return {
       title: 'TimeOverGrow',

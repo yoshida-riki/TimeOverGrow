@@ -58,40 +58,34 @@ class Message {
 
 }
 
-(async () => {
+let totalltime = 0
+async function dbtime() {
   try {
     // 省略 
     // (Cloud Firestoreのインスタンスを初期化してdbにセット)
 
-    const querySnapshot = await dbMessages.get() // firebase.firestore.QuerySnapshotのインスタンスを取得
+    // firebase.firestore.QuerySnapshotのインスタンスを取得
+    const querySnapshot = await dbMessages.get()
 
-    
     querySnapshot.forEach((postDoc) => {
       // console.log(postDoc.id, ' => ', JSON.stringify(postDoc.data().time))
-      
-      console.log(postDoc.data().time);
-
-      // let dbtime = new Set([dbtime.add(postDoc.data().time)]);
-      
-      let dbtime = [];
-      dbtime.push(postDoc.data().time)
-      console.log(dbtime);
-      return dbtime
+      console.log(JSON.stringify(postDoc.data().time));
+      totalltime += postDoc.data().time
+      return totalltime
     })
-    console.log(dbtime);
 
-    // console.log(querySnapshot.postData.data().time);
+    // console.log(totalltime);
 
-    // const dbtime = postDoc.data().time;
-    // if (dbtime) {
-    //   for (let index = 0; index < array.length; index++) {
-    //     const element = array[index];
-        
-    //   }
-    // }
-
-    await db.app.delete()
+    // await db.app.delete()
   } catch (err) {
+
   }
-})()
+
+  return totalltime
+}
+
+dbtime()
+// console.log(totalltime);
+
 export default Message;
+// export { dbtime }

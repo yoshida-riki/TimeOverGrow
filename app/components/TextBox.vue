@@ -1,7 +1,7 @@
 <template>
   <div class="textbox-container">
     <input
-      v-model.trim="time"
+      v-model.trim.number="time"
       class="textbox-input"
       type="number"
       max="24"

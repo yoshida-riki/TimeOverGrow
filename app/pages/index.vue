@@ -4,7 +4,7 @@
       <Header />
       <v-row class="container d-flex justify-center">
         <v-col cols="12" sm="6" md="4">
-          <TotallTime :value="num" />
+          <TotallTime />
         </v-col>
         <v-col cols="12" sm="6" md="8">
           <Chart

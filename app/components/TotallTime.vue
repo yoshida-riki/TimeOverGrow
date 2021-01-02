@@ -3,26 +3,38 @@
     <v-card max-width="374" style="margin: 0 auto;">
       <v-img height="350" :src="image_src"></v-img>
       <p>
-        これまでのトータル学習時間は　{{ totall_time }}
+        これまでのトータル学習時間は 
+        <!-- <span v-bind="dbtime"></span> -->
       </p>
     </v-card>
   </client-only>
 </template>
 
 <script>
+import MessageModel from '../models/Message'
+
+
 export default {
-  // props: {
-  //   value: {
-  //     type: Number,
-  //     required: true,
-  //   },
-  // },
   data() {
     return {
-      totall_time: 0,
+      // totalltime: 6,
       image_src: require('@/assets/Upgrade.png'),
     }
   },
+  // methods: {
+  //   async dbtime() {
+  //     try {
+  //       const querySnapshot = await dbMessages.get()
+  //       querySnapshot.forEach((postDoc) => {
+  //         console.log(JSON.stringify(postDoc.data().time));
+  //         totalltime += postDoc.data().time
+  //         return totalltime
+  //       })
+  //     } catch (err) {
+  //     }
+  //     return totalltime
+  //   }
+  // },
   // watch: {
   //   value(newValue, oldValue) {
   //     let timeCnt = 0
