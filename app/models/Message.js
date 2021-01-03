@@ -61,18 +61,11 @@ class Message {
         // console.log(JSON.stringify(postDoc.data().time));
         totaltime += postDoc.data().time
       })
-      // console.log(totaltime);
       return totaltime
     } catch (err) {
       alert('dbtimeエラー')
     }
   }
 }
-// console.log(dbtime());
-// const myVal = utility.dbtime().then(result => console.log(result));
-// console.log(myVal);
-// dbtime
-// const totaldbtime = dbtime().then((value) => { console.log('v : ', value);});
-// console.log(totaldbtime);
 
 export default Message;

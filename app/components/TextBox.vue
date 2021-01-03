@@ -21,7 +21,12 @@
       row-height="100"
     ></v-textarea>
     <div class="textbox-button">
-      <Button title="今日の学習内容送信！！！" :on-click="post" :clickable="canPost" />
+      <Button
+        title="今日の学習内容送信！！！"
+        :onClick="post"
+        :onGet="get"
+        :clickable="canPost"
+      />
     </div>
   </div>
 </template>
@@ -39,7 +44,7 @@ export default {
       type: Function,
       required: true,
     },
-    getTime: {
+    onGet: {
       type: Function,
       required: true,
     }
@@ -56,12 +61,10 @@ export default {
       this.canPost = false;
       try {
         const message = await MessageModel.save({
-          //ここを改善したらFirestoreにNumber型が保存される様になった
           time: Number(this.time),
           body: this.body
         });
         this.onPost(message);
-        this.getTime(times);
         this.time = 0;
         this.body = '';
       } catch (error) {
@@ -69,9 +72,17 @@ export default {
       }
       this.canPost = true;
     },
-    // get() {
-    //   console.log('@@@@@');
-    // }
+    async get() {
+      let times = 0;
+      try {
+        times += await MessageModel.dbtime();
+        this.onGet(times);
+      } catch (error) {
+        alert(error.message);
+      }
+
+      return times
+    }
   },
 }
 </script>
@@ -86,10 +97,8 @@ export default {
 }
 .textbox-area {
   width: 100%;
-  /* height: 100px; */
   resize: none;
   background: white;
-  /* border: 1px solid black; */
   border-radius: 5px;
   padding: 0;
 }

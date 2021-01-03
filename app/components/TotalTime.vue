@@ -5,9 +5,7 @@
         <v-img height="350" :src="image_src"></v-img>
         <p>
           これまでのトータル学習時間は 
-          {{ times }}
-          <!-- <span v-bind="totaldbtime"></span> -->
-          <!-- <span v-bind="dbtime"></span> -->
+          {{ times }}時間
         </p>
       </v-card>
     </client-only>
@@ -15,14 +13,9 @@
 </template>
 
 <script>
-// import { totaldbtime } from '../models/Message'
-// import Textbox from './TextBox'
-
-
 export default {
   data() {
     return {
-      // totaltime: 6,
       image_src: require('@/assets/Upgrade.png'),
     }
   },  

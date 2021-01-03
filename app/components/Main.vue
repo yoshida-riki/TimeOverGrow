@@ -11,7 +11,7 @@
           />
         </v-col>
       </v-row>
-      <Textbox :on-post="addMessage" :getTime="addTimes" class="container" />
+      <Textbox :on-post="addMessage" :on-get="addTime" class="container" />
       <Spinner v-if="!initialLoaded" class="container" />
       <p
         class="no-messages"
@@ -19,7 +19,7 @@
       >
         毎日の積み上げ0件
       </p>
-      <MessageList  :messages="reversedMessages" class="container" />
+      <MessageList :messages="reversedMessages" class="container" />
     </client-only>
   </div>
 </template>
@@ -44,6 +44,12 @@ export default {
     Spinner,
     MessageList,
   },
+  // props: {
+  //   times: {
+  //     type: Number,
+  //     required: true,
+  //   }
+  // },
   data() {
     return {
       num: 0,
@@ -72,8 +78,8 @@ export default {
     addMessage(message) {
       this.messages.push(message)
     },
-    addTimes(times){
-      times += this.messages.time
+    addTime(times){
+      this.times = times
     },
     async fetchMessages() {
       let messages = [];
@@ -85,6 +91,7 @@ export default {
 
       return messages
     },
+
     async totalTime() {
       let times = 0;
       try {
@@ -95,14 +102,6 @@ export default {
 
       return times
     }
-    // async dbtime() {
-    //   let times = 0;
-    //   try {
-    //     times = await dbtime()
-    //   } catch (error) {
-    //     alert(error.message)
-    //   }
-    // }
   },
 }
 </script>
