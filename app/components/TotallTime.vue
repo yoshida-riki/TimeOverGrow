@@ -3,7 +3,7 @@
     <v-card max-width="374" style="margin: 0 auto;">
       <v-img height="350" :src="image_src"></v-img>
       <p>
-        これまでのトータル学習時間は {{ dbtime() }}
+        これまでのトータル学習時間は <span v-bind="totaltime"></span>
         <!-- <span v-bind="dbtime"></span> -->
       </p>
     </v-card>
@@ -28,7 +28,9 @@ export default {
   //   },
   // },
   methods: {
-    dbtime
+    totaltime: function() {
+      this.dbtime()
+    }
   },
   // watch: {
   //   value(newValue, oldValue) {

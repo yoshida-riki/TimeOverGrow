@@ -28,6 +28,10 @@ export default {
       type: Function,
       required: true,
     },
+    // getClick: {
+    //   type: Function,
+    //   required: true,
+    // },
     clickable: {
       type: Boolean,
       default: true,
