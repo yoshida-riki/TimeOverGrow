@@ -21,14 +21,14 @@
       row-height="100"
     ></v-textarea>
     <div class="textbox-button">
-      <Button title="今日の学習内容送信！！！" :on-click="post" :clickable="canPost" />
+      <Button title="今日の学習内容送信！！！" :on-click="post" :get-click="get" :clickable="canPost" />
     </div>
   </div>
 </template>
 
 <script>
 import Button from './Button'
-import MessageModel from '../models/Message'
+import MessageModel, { totaldbtime } from '../models/Message'
 
 export default {
   components: {
@@ -39,6 +39,10 @@ export default {
       type: Function,
       required: true,
     },
+    onGet: {
+      type: Function,
+      required: true,
+    }
   },
   data() {
     return {
@@ -62,9 +66,15 @@ export default {
       } catch (error) {
         alert(error.message);
       }
-
       this.canPost = true;
     },
+    async get() {
+      try {
+        this.onGet(totaldbtime);
+      } catch (error) {
+        alert(error.message);
+      }
+    }
   },
 }
 </script>

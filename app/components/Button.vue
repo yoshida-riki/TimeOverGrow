@@ -10,7 +10,7 @@
     x-large
     class="button"
     :class="{disabled: !clickable}"
-    @click="onClick"
+    @click="onClick(); getClick()"
     :disabled="!clickable"
   >
     {{ title }}
@@ -28,10 +28,10 @@ export default {
       type: Function,
       required: true,
     },
-    // getClick: {
-    //   type: Function,
-    //   required: true,
-    // },
+    getClick: {
+      type: Function,
+      required: true,
+    },
     clickable: {
       type: Boolean,
       default: true,

@@ -55,22 +55,15 @@ class Message {
 
 async function dbtime() {
   try {
-    // 省略 
-    // (Cloud Firestoreのインスタンスを初期化してdbにセット)
-    // firebase.firestore.QuerySnapshotのインスタンスを取得
     const querySnapshot = await dbMessages.get()
     let totaltime = 0
     querySnapshot.forEach((postDoc) => {
       // console.log(postDoc.id, ' => ', JSON.stringify(postDoc.data().time))
       // console.log(JSON.stringify(postDoc.data().time));
       totaltime += postDoc.data().time
-      
     })
-    console.log(totaltime);
-    // const totaldbtime = await dbtime()
-    // console.log(totaldbtime);
-    // let myVal = utility.dbtime().then(result => console.log(result));
-    
+
+    return totaltime
   } catch (err) {
     alert('dbtimeエラー')
   }
@@ -78,10 +71,11 @@ async function dbtime() {
 
 // const myVal = utility.dbtime().then(result => console.log(result));
 // console.log(myVal);
-dbtime()
-// console.log(totalldbtime);
+// dbtime
+const totaldbtime = dbtime().then((value) => { console.log('v : ', value);});
+// console.log(totaldbtime);
 
 export default Message;
-export { dbtime }
+export { totaldbtime }
 // export { totalldbtime }
 // console.log(totalltime);

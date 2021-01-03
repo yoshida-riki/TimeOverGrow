@@ -4,7 +4,7 @@
       <Header />
       <v-row class="container d-flex justify-center">
         <v-col cols="12" sm="6" md="4">
-          <TotallTime />
+          <TotallTime :on-get="gettotaltime" />
         </v-col>
         <v-col cols="12" sm="6" md="8">
           <Chart
@@ -12,9 +12,6 @@
           />
         </v-col>
       </v-row>
-
-      <!-- <input v-model.number="num" type="number" /> -->
-
       <Textbox :on-post="addMessage" class="container" />
       <Spinner v-if="!initialLoaded" class="container" />
       <p
@@ -68,7 +65,9 @@ export default {
   },
   async created() {
     const messages = await this.fetchMessages();
+    // const times = await this.dbtime();
     this.messages = messages;
+    // this.times = times;
     this.initialLoaded = true;
   },
   methods: {
