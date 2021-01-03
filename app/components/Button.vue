@@ -10,7 +10,7 @@
     x-large
     class="button"
     :class="{disabled: !clickable}"
-    @click="onClick"
+    @click="onClick(); getClick()"
     :disabled="!clickable"
   >
     {{ title }}
@@ -25,6 +25,10 @@ export default {
       default: '今日の学習内容送信！！！',
     },
     onClick: {
+      type: Function,
+      required: true,
+    },
+    getClick: {
       type: Function,
       required: true,
     },
