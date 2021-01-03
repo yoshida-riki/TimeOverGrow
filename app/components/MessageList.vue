@@ -8,7 +8,7 @@
 
 <script>
 import Message from './Message'
-import TotallTime from './TotallTime'
+// import TotalTime from './TotalTime'
 
 export default {
   components: {

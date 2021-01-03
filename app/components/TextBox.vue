@@ -1,7 +1,7 @@
 <template>
   <div class="textbox-container">
     <input
-      v-model.trim.number="time"
+      v-model.trim="time"
       class="textbox-input"
       type="number"
       max="24"
@@ -21,14 +21,14 @@
       row-height="100"
     ></v-textarea>
     <div class="textbox-button">
-      <Button title="今日の学習内容送信！！！" :on-click="post" :get-click="get" :clickable="canPost" />
+      <Button title="今日の学習内容送信！！！" :on-click="post" :clickable="canPost" />
     </div>
   </div>
 </template>
 
 <script>
 import Button from './Button'
-import MessageModel, { totaldbtime } from '../models/Message'
+import MessageModel from '../models/Message'
 
 export default {
   components: {
@@ -39,14 +39,14 @@ export default {
       type: Function,
       required: true,
     },
-    onGet: {
+    getTime: {
       type: Function,
       required: true,
     }
   },
   data() {
     return {
-      time: '',
+      time: 0,
       body: '',
       canPost: true,
     }
@@ -61,20 +61,17 @@ export default {
           body: this.body
         });
         this.onPost(message);
-        this.time = '';
+        this.getTime(times);
+        this.time = 0;
         this.body = '';
       } catch (error) {
         alert(error.message);
       }
       this.canPost = true;
     },
-    async get() {
-      try {
-        this.onGet(totaldbtime);
-      } catch (error) {
-        alert(error.message);
-      }
-    }
+    // get() {
+    //   console.log('@@@@@');
+    // }
   },
 }
 </script>

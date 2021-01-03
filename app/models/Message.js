@@ -51,31 +51,28 @@ class Message {
       date: data.date.toDate().toLocaleString()
     });
   };
-}
 
-async function dbtime() {
-  try {
-    const querySnapshot = await dbMessages.get()
-    let totaltime = 0
-    querySnapshot.forEach((postDoc) => {
-      // console.log(postDoc.id, ' => ', JSON.stringify(postDoc.data().time))
-      // console.log(JSON.stringify(postDoc.data().time));
-      totaltime += postDoc.data().time
-    })
-
-    return totaltime
-  } catch (err) {
-    alert('dbtimeエラー')
+  static async dbtime() {
+    try {
+      const querySnapshot = await dbMessages.get()
+      let totaltime = 0
+      querySnapshot.forEach((postDoc) => {
+        // console.log(postDoc.id, ' => ', JSON.stringify(postDoc.data().time))
+        // console.log(JSON.stringify(postDoc.data().time));
+        totaltime += postDoc.data().time
+      })
+      // console.log(totaltime);
+      return totaltime
+    } catch (err) {
+      alert('dbtimeエラー')
+    }
   }
 }
-
+// console.log(dbtime());
 // const myVal = utility.dbtime().then(result => console.log(result));
 // console.log(myVal);
 // dbtime
-const totaldbtime = dbtime().then((value) => { console.log('v : ', value);});
+// const totaldbtime = dbtime().then((value) => { console.log('v : ', value);});
 // console.log(totaldbtime);
 
 export default Message;
-export { totaldbtime }
-// export { totalldbtime }
-// console.log(totalltime);
