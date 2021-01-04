@@ -1,14 +1,16 @@
 <template>
   <div class="message-list">
-    <template v-for="(message, time, index) in messages">
-      <Message :key="index" :time="message.time" :body="message.body" :date="message.date" />
-    </template>
+    <client-only>
+      <template v-for="(message, index) in messages">
+        <Message :key="index" :time="message.time" :body="message.body" :date="message.date" />
+      </template>
+    </client-only>
   </div>
 </template>
 
 <script>
 import Message from './Message'
-import TotallTime from './TotallTime'
+
 
 export default {
   components: {
@@ -21,7 +23,7 @@ export default {
       validator: function(messages) {
         return messages.every(message => {
           if (typeof message.time !== 'number') {
-          return false
+            return false
           }
           if (typeof message.date !== 'string') {
             return false

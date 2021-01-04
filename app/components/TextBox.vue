@@ -1,7 +1,7 @@
 <template>
   <div class="textbox-container">
     <input
-      v-model.trim.number="time"
+      v-model.trim="time"
       class="textbox-input"
       type="number"
       max="24"
@@ -21,14 +21,20 @@
       row-height="100"
     ></v-textarea>
     <div class="textbox-button">
-      <Button title="今日の学習内容送信！！！" :on-click="post" :get-click="get" :clickable="canPost" />
+      <Button
+        title="今日の学習内容送信！！！"
+        :onClick="post"
+        :onGet="get"
+        :onChart="chart"
+        :clickable="canPost"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import Button from './Button'
-import MessageModel, { totaldbtime } from '../models/Message'
+import MessageModel from '../models/Message'
 
 export default {
   components: {
@@ -42,11 +48,15 @@ export default {
     onGet: {
       type: Function,
       required: true,
+    },
+    onChart: {
+      type: null,
+      required: true,
     }
   },
   data() {
     return {
-      time: '',
+      time: 0,
       body: '',
       canPost: true,
     }
@@ -56,12 +66,11 @@ export default {
       this.canPost = false;
       try {
         const message = await MessageModel.save({
-          //ここを改善したらFirestoreにNumber型が保存される様になった
           time: Number(this.time),
           body: this.body
         });
         this.onPost(message);
-        this.time = '';
+        this.time = 0;
         this.body = '';
       } catch (error) {
         alert(error.message);
@@ -69,11 +78,26 @@ export default {
       this.canPost = true;
     },
     async get() {
+      let times = 0;
       try {
-        this.onGet(totaldbtime);
+        times += await MessageModel.dbtime();
+        this.onGet(times);
       } catch (error) {
         alert(error.message);
       }
+
+      return times
+    },
+    async chart() {
+      let data = 0;
+      try {
+        data += await MessageModel.dbtime();
+        this.onChart(data);
+      } catch (error) {
+        alert(error.message);
+      }
+
+      return data
     }
   },
 }
@@ -89,10 +113,8 @@ export default {
 }
 .textbox-area {
   width: 100%;
-  /* height: 100px; */
   resize: none;
   background: white;
-  /* border: 1px solid black; */
   border-radius: 5px;
   padding: 0;
 }

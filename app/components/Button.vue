@@ -10,7 +10,7 @@
     x-large
     class="button"
     :class="{disabled: !clickable}"
-    @click="onClick(); getClick()"
+    @click="(onClick(),onGet(),onChart())"
     :disabled="!clickable"
   >
     {{ title }}
@@ -28,8 +28,12 @@ export default {
       type: Function,
       required: true,
     },
-    getClick: {
+    onGet: {
       type: Function,
+      required: true,
+    },
+    onChart: {
+      type: null,
       required: true,
     },
     clickable: {
