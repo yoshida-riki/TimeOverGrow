@@ -1,16 +1,27 @@
 <script>
-import { Bar } from 'vue-chartjs'
-
+import { Bar, mixins } from 'vue-chartjs'
+import MessageModel from '../models/Message'
+const { reactiveProp } = mixins
 
 export default {
   extends: Bar,
+  mixins: [reactiveProp],
+  props: {
+    chartData: {
+      type: Object,
+      default: null,
+    }
+  },
+  mounted () {
+    this.renderChart(this.chartData, this.options)
+  },
   data(){
     return {
       chartdata: {
-        labels: ['学習時間'],
+        // labels: ['学習時間'],
         datasets: [
           {
-            label: ['学習時間'],
+            // label: ['学習時間'],
             data: [],
             backgroundColor: ['rgba(54, 162, 235, 0.2)'],
             borderColor: ['rgba(54, 162, 235, 1)'],
@@ -24,6 +35,7 @@ export default {
         scales: {
           // x軸に関して
           xAxes: [{
+            stacked: true,
             // ラベルについて
             scaleLabel: {
               display: true,
@@ -51,20 +63,21 @@ export default {
             }
           }
         }
-      }
+      },
     }
   },
-
-  // 変更点
-  // props: ['chartdata', 'options'],
-
-  mounted () {
-    this.renderChart(this.chartdata, this.options)
-  },
+  // methods: {
+  //   createChartdata(data) {
+  //     const chartdata = {
+  //       datasets: [
+  //         {
+  //           data: [300],
+  //         }
+  //       ]
+  //     }
+  //     return chartdata;
+  //   }
+  // },
   responsive: true,
 }
 </script>
-
-<style scoped>
-
-</style>

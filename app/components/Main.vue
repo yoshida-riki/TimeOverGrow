@@ -7,11 +7,12 @@
         </v-col>
         <v-col cols="12" sm="6" md="8">
           <Chart
-            style="width: 100%;"
+            :chartData="chartData"
+            
           />
         </v-col>
       </v-row>
-      <Textbox :on-post="addMessage" :on-get="addTime" class="container" />
+      <Textbox :on-post="addMessage" :on-get="addTime" :on-chart="addChart" class="container" />
       <Spinner v-if="!initialLoaded" class="container" />
       <p
         class="no-messages"
@@ -44,12 +45,6 @@ export default {
     Spinner,
     MessageList,
   },
-  // props: {
-  //   times: {
-  //     type: Number,
-  //     required: true,
-  //   }
-  // },
   data() {
     return {
       num: 0,
@@ -57,6 +52,7 @@ export default {
       index: '',
       done: false,
       messages: [],
+      chartData: [],
       times: 0,
       initialLoaded: false
     }
@@ -66,12 +62,17 @@ export default {
       return this.messages.slice().reverse()
     },
   },
+  mounted () {
+    this.addChart()
+  },
   async created() {
     const messages = await this.fetchMessages();
     const times = await this.totalTime();
+    const chartData = await this.getChart();
+
     this.messages = messages;
     this.times = times;
-
+    this.chartData = chartData;
     this.initialLoaded = true;
   },
   methods: {
@@ -80,6 +81,20 @@ export default {
     },
     addTime(times){
       this.times = times
+    },
+    addChart(data) {
+      // this.chartData = chartData
+      this.chartData = {
+        labels: ['学習時間'],
+        datasets: [
+          {
+            data: [],
+            label: "学習時間",
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+          }
+        ],
+      }
+      this.chartData.datasets[0].data[0] = this.times
     },
     async fetchMessages() {
       let messages = [];
@@ -91,7 +106,6 @@ export default {
 
       return messages
     },
-
     async totalTime() {
       let times = 0;
       try {
@@ -101,8 +115,24 @@ export default {
       }
 
       return times
-    }
-  },
+    },
+    async getChart() {
+      let dates = 0;
+      let chartData = [];
+      try {
+        dates = await MessageModel.dbtime();
+        chartData = chartData.push(dates);
+        let sum = chartData.reduce(function(date) {
+          return date
+        });
+        
+      } catch (error) {
+        alert(error.message);
+      }
+
+      return chartData
+    },
+  }
 }
 </script>
 

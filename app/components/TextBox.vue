@@ -25,6 +25,7 @@
         title="今日の学習内容送信！！！"
         :onClick="post"
         :onGet="get"
+        :onChart="chart"
         :clickable="canPost"
       />
     </div>
@@ -46,6 +47,10 @@ export default {
     },
     onGet: {
       type: Function,
+      required: true,
+    },
+    onChart: {
+      type: null,
       required: true,
     }
   },
@@ -82,6 +87,17 @@ export default {
       }
 
       return times
+    },
+    async chart() {
+      let data = 0;
+      try {
+        data += await MessageModel.dbtime();
+        this.onChart(data);
+      } catch (error) {
+        alert(error.message);
+      }
+
+      return data
     }
   },
 }
