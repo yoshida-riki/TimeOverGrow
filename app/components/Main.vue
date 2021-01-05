@@ -7,8 +7,9 @@
         </v-col>
         <v-col cols="12" sm="6" md="8">
           <Chart
-            :chartData="chartData"
-            
+            :chart-data="BarChartData"
+            :options="BarChartOptions"
+
           />
         </v-col>
       </v-row>
@@ -52,9 +53,56 @@ export default {
       index: '',
       done: false,
       messages: [],
-      chartData: [],
+      vuechartData: [],
       times: 0,
-      initialLoaded: false
+      initialLoaded: false,
+      BarChartData: {
+        labels: ['学習時間'],
+        datasets: [
+          {
+            label: ['学習時間'],
+            data: [],
+            backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+            borderColor: ['rgba(54, 162, 235, 1)'],
+            borderWidth: [1],
+          }
+        ]
+      },
+      BarChartOptions: {
+        responsive: true,
+        maintainAspectRatio: false, // グラフの縦横比を固定するか
+        scales: {
+          // x軸に関して
+          xAxes: [{
+            stacked: true,
+            // ラベルについて
+            scaleLabel: {
+              display: true,
+              labelString: ''
+            }
+          }],
+          // y軸に関して
+          yAxes: [{
+            // 目盛りについて
+            ticks: {
+              beginAtZero: true, // 0からスタートするか
+              max: 500,
+              stepSize: 50, // 目盛りの間隔
+              callback: function (label, index, labels) {
+                return label + ' h';
+              }
+            }
+          }],
+        },
+        // hoverした時に出てくる表示
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return tooltipItem.yLabel + ' h';
+            }
+          }
+        }
+      },
     }
   },
   computed: {
@@ -68,11 +116,14 @@ export default {
   async created() {
     const messages = await this.fetchMessages();
     const times = await this.totalTime();
-    const chartData = await this.getChart();
+    // const varchartData = await JSON.parse(JSON.stringify(this.getChart()));
+    // let chartdbdata = this.BarChartData.datasets[0].data[0]; 
+    const vuechartData = await this.getChart();
+    // const vuechartData = await JSON.parse(this.getChart());
 
     this.messages = messages;
     this.times = times;
-    this.chartData = chartData;
+    this.BarChartData.datasets[0].data[0] = vuechartData;
     this.initialLoaded = true;
   },
   methods: {
@@ -82,19 +133,13 @@ export default {
     addTime(times){
       this.times = times
     },
-    addChart(data) {
-      // this.chartData = chartData
-      this.chartData = {
-        labels: ['学習時間'],
-        datasets: [
-          {
-            data: [],
-            label: "学習時間",
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-          }
-        ],
-      }
-      this.chartData.datasets[0].data[0] = this.times
+    addChart(vuechartData) {
+      // this.chartData.datasets[0].data[0] = this.times
+
+      //ここのvuechartDataをいじればレスポンス返ってくる！！！
+
+      this.BarChartData.datasets[0].data[0] = vuechartData
+      // this.BarChartData.datasets[0].data[0] = this.times
     },
     async fetchMessages() {
       let messages = [];
@@ -117,20 +162,27 @@ export default {
       return times
     },
     async getChart() {
-      let dates = 0;
-      let chartData = [];
+      let vuechartData = [];
+      let chartdbtime = await MessageModel.dbtime();
       try {
-        dates = await MessageModel.dbtime();
-        chartData = chartData.push(dates);
-        let sum = chartData.reduce(function(date) {
-          return date
-        });
-        
+        if (vuechartData.length === 0) {
+          vuechartData.push(chartdbtime);
+        } 
+          vuechartData[0] = vuechartData[0] + chartdbtime;
       } catch (error) {
         alert(error.message);
       }
 
-      return chartData
+      return vuechartData
+
+      // let vuechartData = 0;
+      // try {
+      //   vuechartData += await MessageModel.dbtime();
+      // } catch (error) {
+      //   alert(error.message);
+      // }
+
+      // return vuechartData
     },
   }
 }
