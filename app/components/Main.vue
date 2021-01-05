@@ -35,7 +35,9 @@ import Textbox from './Textbox'
 import Spinner from './Spinner'
 import MessageList from './MessageList'
 import MessageModel from '../models/Message'
-
+import { Bar, mixins } from 'vue-chartjs'
+// import MessageModel from '../models/Message'
+// const { reactiveProp } = mixins
 
 Vue.use(Vuetify)
 export default {
@@ -123,7 +125,14 @@ export default {
 
     this.messages = messages;
     this.times = times;
-    this.BarChartData.datasets[0].data[0] = vuechartData;
+
+    console.log(vuechartData);
+    console.log('@@@@@');
+    console.log(this.BarChartData.datasets[0].data);
+
+
+    this.BarChartData.datasets[0].data = vuechartData[0];
+    // this.BarChartData.datasets[0].data = 300;
     this.initialLoaded = true;
   },
   methods: {
@@ -135,9 +144,14 @@ export default {
     },
     addChart(vuechartData) {
       //ここのvuechartDataをいじればレスポンス返ってくる！！！
+      console.log('!!!!!');
+      console.log(vuechartData);
+      console.log(this.BarChartData.datasets[0].data);
+
+      // this.BarChartData.datasets[0].data.push(vuechartData)
+      // console.log(this.BarChartData.datasets[0].data);
 
       this.BarChartData.datasets[0].data[0] = vuechartData
-      // this.BarChartData.datasets[0].data[0] = 300
       // this.BarChartData.datasets[0].data[0] = this.times
     },
     async fetchMessages() {
@@ -167,21 +181,12 @@ export default {
         if (vuechartData.length === 0) {
           vuechartData.push(chartdbtime);
         } 
-          vuechartData[0] = vuechartData[0] + chartdbtime;
+          // vuechartData[0] = vuechartData[0] + chartdbtime;
       } catch (error) {
         alert(error.message);
       }
 
-      return vuechartData;
-
-      // let vuechartData = 0;
-      // try {
-      //   vuechartData += await MessageModel.dbtime();
-      // } catch (error) {
-      //   alert(error.message);
-      // }
-
-      // return vuechartData
+      return vuechartData
     },
   }
 }

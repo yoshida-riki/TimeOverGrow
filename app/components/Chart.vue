@@ -1,6 +1,6 @@
 <script>
 import { Bar, mixins } from 'vue-chartjs'
-import MessageModel from '../models/Message'
+// import MessageModel from '../models/Message'
 const { reactiveProp } = mixins
 
 export default {

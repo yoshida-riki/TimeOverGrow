@@ -97,24 +97,13 @@ export default {
         if (vuechartData.length === 0) {
           vuechartData.push(chartdbtime);
         } 
-          vuechartData[0] = vuechartData[0] + chartdbtime;
+          // vuechartData[0] = vuechartData[0] + chartdbtime;
           this.onChart(vuechartData[0]);
       } catch (error) {
         alert(error.message);
       }
 
       return vuechartData[0]
-
-
-      // let vuechartData = 0;
-      // try {
-      //   vuechartData += await MessageModel.dbtime();
-      //   this.onChart(vuechartData);
-      // } catch (error) {
-      //   alert(error.message);
-      // }
-
-      // return vuechartData
     }
   },
 }
