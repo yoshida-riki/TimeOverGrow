@@ -134,8 +134,6 @@ export default {
       this.times = times
     },
     addChart(vuechartData) {
-      // this.chartData.datasets[0].data[0] = this.times
-
       //ここのvuechartDataをいじればレスポンス返ってくる！！！
 
       this.BarChartData.datasets[0].data[0] = vuechartData
@@ -173,7 +171,7 @@ export default {
         alert(error.message);
       }
 
-      return vuechartData
+      return vuechartData;
 
       // let vuechartData = 0;
       // try {
