@@ -50,7 +50,7 @@ export default {
       required: true,
     },
     onChart: {
-      type: null,
+      type: Function,
       required: true,
     }
   },
@@ -77,6 +77,7 @@ export default {
       }
       this.canPost = true;
     },
+
     async get() {
       let times = 0;
       try {
@@ -88,16 +89,32 @@ export default {
 
       return times
     },
+
     async chart() {
-      let data = 0;
+      let vuechartData = [];
+      let chartdbtime = await MessageModel.dbtime();
       try {
-        data += await MessageModel.dbtime();
-        this.onChart(data);
+        if (vuechartData.length === 0) {
+          vuechartData.push(chartdbtime);
+        } 
+          vuechartData[0] = vuechartData[0] + chartdbtime;
+          this.onChart(vuechartData);
       } catch (error) {
         alert(error.message);
       }
 
-      return data
+      return vuechartData
+
+
+      // let vuechartData = 0;
+      // try {
+      //   vuechartData += await MessageModel.dbtime();
+      //   this.onChart(vuechartData);
+      // } catch (error) {
+      //   alert(error.message);
+      // }
+
+      // return vuechartData
     }
   },
 }

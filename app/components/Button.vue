@@ -33,7 +33,7 @@ export default {
       required: true,
     },
     onChart: {
-      type: null,
+      type: Function,
       required: true,
     },
     clickable: {
