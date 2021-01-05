@@ -137,6 +137,7 @@ export default {
       //ここのvuechartDataをいじればレスポンス返ってくる！！！
 
       this.BarChartData.datasets[0].data[0] = vuechartData
+      // this.BarChartData.datasets[0].data[0] = 300
       // this.BarChartData.datasets[0].data[0] = this.times
     },
     async fetchMessages() {
