@@ -98,12 +98,12 @@ export default {
           vuechartData.push(chartdbtime);
         } 
           vuechartData[0] = vuechartData[0] + chartdbtime;
-          this.onChart(vuechartData);
+          this.onChart(vuechartData[0]);
       } catch (error) {
         alert(error.message);
       }
 
-      return vuechartData
+      return vuechartData[0]
 
 
       // let vuechartData = 0;
