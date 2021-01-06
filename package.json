@@ -1,6 +1,6 @@
 {
   "name": "time-over-grow",
-  "version": "1.0.0",
+  "version": "1.22.10",
   "private": true,
   "scripts": {
     "build": "nuxt build",
