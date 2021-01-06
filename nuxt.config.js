@@ -1,8 +1,4 @@
-module.default = {
-  // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  ssr: false,
-
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+export default {
   head: {
     title: 'time-over-grow',
     meta: [
@@ -12,42 +8,43 @@ module.default = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
-
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
   plugins: [
     {
       src: '@/plugins/plugin',
-      mode: 'client',
     },
   ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
-    // Simple usage
-    '@nuxtjs/vuetify',
-  ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ['@nuxtjs/dotenv', '@nuxtjs/vuetify'],
-  devModules: ['@nuxtjs/vuetify'],
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
-  srcDir: 'nuxt-app',
+  buildModules: ['@nuxtjs/vuetify'],
+  srcDir: 'app/',
   build: {
-    /*
-     * You can extend webpack config here */
     publicPath: '/assets/',
     buildDir: 'nuxt-dist',
     extend(config, ctx) {},
   },
-  generate: {
-    dir: 'public',
+  performance: {
+    hints: false,
+  },
+  target: 'static',
+  babel: {
+    presets({ isServer }) {
+      return [
+        [
+          require.resolve('@nuxt/babel-preset-app'),
+          {
+            buildTarget: isServer ? 'server' : 'client',
+            corejs: { version: 3 },
+          },
+        ],
+      ]
+    },
   },
 }
