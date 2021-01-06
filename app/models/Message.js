@@ -57,8 +57,6 @@ class Message {
       const querySnapshot = await dbMessages.get()
       let totaltime = 0
       querySnapshot.forEach((postDoc) => {
-        // console.log(postDoc.id, ' => ', JSON.stringify(postDoc.data().time))
-        // console.log(JSON.stringify(postDoc.data().time));
         totaltime += postDoc.data().time
       })
       return totaltime

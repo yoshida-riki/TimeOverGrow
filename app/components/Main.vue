@@ -34,8 +34,6 @@ import Textbox from './Textbox'
 import Spinner from './Spinner'
 import MessageList from './MessageList'
 import MessageModel from '../models/Message'
-// import { Bar, mixins } from 'vue-chartjs'
-// import BarChartVue from './BarChart.vue'
 
 Vue.use(Vuetify)
 export default {
