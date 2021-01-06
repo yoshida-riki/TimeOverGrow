@@ -39,8 +39,8 @@ export default {
           return true
         });
       },
-    },
-  },
+    }
+  }
 }
 </script>
 
