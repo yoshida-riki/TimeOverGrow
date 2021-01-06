@@ -85,4 +85,3 @@
   //   }
   // },
   // responsive: true,
-}
