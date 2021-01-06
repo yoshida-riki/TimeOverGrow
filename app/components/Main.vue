@@ -9,11 +9,10 @@
           <Chart
             :chart-data="BarChartData"
             :options="BarChartOptions"
-
           />
         </v-col>
       </v-row>
-      <Textbox :on-post="addMessage" :on-get="addTime" :on-chart="addChart" class="container" />
+      <Textbox :on-post="addMessage" :on-get="addTime" :on-chart="makeData" class="container" />
       <Spinner v-if="!initialLoaded" class="container" />
       <p
         class="no-messages"
@@ -35,8 +34,8 @@ import Textbox from './Textbox'
 import Spinner from './Spinner'
 import MessageList from './MessageList'
 import MessageModel from '../models/Message'
-import { Bar, mixins } from 'vue-chartjs'
-import BarChartVue from './BarChart.vue'
+// import { Bar, mixins } from 'vue-chartjs'
+// import BarChartVue from './BarChart.vue'
 
 Vue.use(Vuetify)
 export default {
@@ -54,22 +53,58 @@ export default {
       index: '',
       done: false,
       messages: [],
-      vuechartData: [],
+      BarChartData: {},
+      options: {},
       times: 0,
       initialLoaded: false,
-      BarChartData: {
+    }
+  },
+  computed: {
+    reversedMessages() {
+      return this.messages.slice().reverse()
+    },
+  },
+  async mounted () {
+    await this.makeData()
+  },
+  async created() {
+    const messages = await this.fetchMessages();
+    const times = await this.totalTime();
+    const vuechartData = await this.getChart();
+
+    this.messages = messages;
+    this.times = times;
+    this.BarChartData.datasets[0].data[0] = vuechartData[0];
+    this.initialLoaded = true;
+  },
+
+  methods: {
+    addMessage(message) {
+      this.messages.push(message)
+    },
+    addTime(times){
+      this.times = times
+    },
+    async makeData () {
+      let vuechartData = [];
+      let chartdbtime = await MessageModel.dbtime();
+        if (vuechartData.length === 0) {
+          await vuechartData.push(chartdbtime);
+        } 
+      // グラフにセットする
+      this.BarChartData = {
         labels: ['学習時間'],
         datasets: [
           {
             label: ['学習時間'],
-            data: [],
+            data: vuechartData,
             backgroundColor: ['rgba(54, 162, 235, 0.2)'],
             borderColor: ['rgba(54, 162, 235, 1)'],
             borderWidth: [1],
           }
         ]
       },
-      BarChartOptions: {
+      this.BarChartOptions = {
         responsive: true,
         maintainAspectRatio: false, // グラフの縦横比を固定するか
         scales: {
@@ -103,53 +138,7 @@ export default {
             }
           }
         }
-      },
-    }
-  },
-  computed: {
-    reversedMessages() {
-      return this.messages.slice().reverse()
-    },
-  },
-  async mounted () {
-    await this.getChart()
-  },
-  async created() {
-    const messages = await this.fetchMessages();
-    const times = await this.totalTime();
-    const vuechartData = await this.getChart();
-
-    this.messages = messages;
-    this.times = times;
-
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    console.log(vuechartData[0]);
-    //↓怪しい。。。
-    console.log(this.BarChartData.datasets[0].data[0]);
-    console.log(typeof(this.BarChartData.datasets[0].data[0]));
-
-    this.BarChartData.datasets[0].data[0] = vuechartData[0];
-    // Vue.set(this.BarChartData.datasets[0].data)
-
-    
-    this.initialLoaded = true;
-  },
-  methods: {
-    addMessage(message) {
-      this.messages.push(message)
-    },
-    addTime(times){
-      this.times = times
-    },
-    addChart(vuechartData) {
-      //ここは正しい！！！
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!');
-      console.log(vuechartData);
-      console.log(this.BarChartData.datasets[0].data[0]);
-      
-      this.BarChartData.datasets[0].data[0] = vuechartData
-      // this.BarChartData.datasets[0].data.update()
-      // Vue.set(this.BarChartData.datasets[0].data[0])
+      }
     },
     async fetchMessages() {
       let messages = [];
@@ -184,6 +173,7 @@ export default {
       }
 
       return vuechartData
+      // this.makeData()
     },
   }
 }

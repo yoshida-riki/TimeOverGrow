@@ -1,37 +1,34 @@
-// import { Bar,mixins } from 'vue-chartjs'
-// /* import MessageModel from '../models/Message' */
-// const { reactiveProp } = mixins
+import { Bar, mixins } from 'vue-chartjs'
+// import MessageModel from '../models/Message'
+const { reactiveProp } = mixins
 
-// export default {
-//   extends: Bar,
-//   mixins: [reactiveProp],
-//   props: ['chartData','options'],
-//   mounted () {
-//     this.renderChart(this.chartData, this.options)
-//   },
-  // watch: {
-  //   chartData: function(val) {
-  //     this.renderChart(this.chartData, this.options)
-  //   },
-  //   options: function(val) {
-  //     this.renderChart(this.chartData, this.options)
-  //   },
+export default {
+  extends: Bar,
+  mixins: [reactiveProp],
+  // props: {
+  //   options: {
+  //     type: Object,
+  //     default: null,
+  //   }
   // },
+  props: ['options'],
+  mounted () {
+    this.renderChart(this.chartData, this.options)
+  },
   // data(){
   //   return {
-  //     chartdata: [],
-  //     chartdata: {
-  //       labels: ['学習時間'],
-  //       datasets: [
-  //         {
-  //           label: ['学習時間'],
-  //           data: [],
-  //           backgroundColor: ['rgba(54, 162, 235, 0.2)'],
-  //           borderColor: ['rgba(54, 162, 235, 1)'],
-  //           borderWidth: [1],
-  //         }
-  //       ]
-  //     },
+  //     // chartdata: {
+  //     //   labels: ['学習時間'],
+  //     //   datasets: [
+  //     //     {
+  //     //       label: ['学習時間'],
+  //     //       data: [],
+  //     //       backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+  //     //       borderColor: ['rgba(54, 162, 235, 1)'],
+  //     //       borderWidth: [1],
+  //     //     }
+  //     //   ]
+  //     // },
   //     options: {
   //       responsive: true,
   //       maintainAspectRatio: false, // グラフの縦横比を固定するか
@@ -67,21 +64,18 @@
   //         }
   //       }
   //     },
-  //     // mounted() {
-  //     //   this.renderChart(this.totaltimedata)
-  //     // }
   //   }
   // },
   // methods: {
   //   createChartdata(data) {
-  //     const chartdata = {
+  //     const chartSata = {
   //       datasets: [
   //         {
-  //           data: totaltimedata,
+  //           data: [300],
   //         }
   //       ]
   //     }
-  //     return chartdata;
+  //     return chartSata;
   //   }
   // },
-  // responsive: true,
+}
