@@ -1,34 +1,36 @@
 <template>
   <div class="textbox-container">
-    <input
-      v-model.trim="time"
-      class="textbox-input"
-      type="number"
-      max="24"
-      min="0.25"
-      step="0.25"
-      placeholder="3"
-    />時間
-    <v-textarea
-      v-model.trim="body"
-      class="textbox-area"
-      label="今日のアウトプット内容"
-      color="red"
-      flat
-      auto-grow
-      outlined
-      rows="1"
-      row-height="100"
-    ></v-textarea>
-    <div class="textbox-button">
-      <Button
-        title="今日の学習内容送信！！！"
-        :onClick="post"
-        :onGet="get"
-        :onChart="chart"
-        :clickable="canPost"
-      />
-    </div>
+    <client-only>
+      <input
+        v-model.trim="time"
+        class="textbox-input"
+        type="number"
+        max="24"
+        min="0.25"
+        step="0.25"
+        placeholder="3"
+      />時間
+      <v-textarea
+        v-model.trim="body"
+        class="textbox-area"
+        label="今日のアウトプット内容"
+        color="red"
+        flat
+        auto-grow
+        outlined
+        rows="1"
+        row-height="100"
+      ></v-textarea>
+      <div class="textbox-button">
+        <Button
+          title="今日の学習内容送信！！！"
+          :onClick="post"
+          :onGet="get"
+          :onChart="chart"
+          :clickable="canPost"
+        />
+      </div>
+    </client-only>
   </div>
 </template>
 
