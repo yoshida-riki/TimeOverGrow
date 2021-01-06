@@ -5,13 +5,14 @@ const { reactiveProp } = mixins
 
 export default {
   extends: Bar,
-  mixins: [reactiveProp],
-  props: {
-    options: {
-      type: Object,
-      default: null,
-    }
-  },
+  mixins: [mixins.reactiveProp],
+  // props: {
+  //   options: {
+  //     type: Object,
+  //     default: null,
+  //   }
+  // },
+  props: ['chartData', 'options'],
   mounted () {
     this.renderChart(this.chartData, this.options)
   },

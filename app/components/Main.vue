@@ -5,7 +5,7 @@
         <v-col cols="12" sm="6" md="4">
           <TotalTime :times="times" />
         </v-col>
-        <v-col cols="12" sm="6" md="8">
+        <v-col v-if="initialLoaded" cols="12" sm="6" md="8">
           <Chart
             :chart-data="BarChartData"
             :options="BarChartOptions"
@@ -36,8 +36,7 @@ import Spinner from './Spinner'
 import MessageList from './MessageList'
 import MessageModel from '../models/Message'
 import { Bar, mixins } from 'vue-chartjs'
-// import MessageModel from '../models/Message'
-// const { reactiveProp } = mixins
+import BarChartVue from './BarChart.vue'
 
 Vue.use(Vuetify)
 export default {
@@ -112,27 +111,27 @@ export default {
       return this.messages.slice().reverse()
     },
   },
-  mounted () {
-    this.addChart()
+  async mounted () {
+    await this.getChart()
   },
   async created() {
     const messages = await this.fetchMessages();
     const times = await this.totalTime();
-    // const varchartData = await JSON.parse(JSON.stringify(this.getChart()));
-    // let chartdbdata = this.BarChartData.datasets[0].data[0]; 
     const vuechartData = await this.getChart();
-    // const vuechartData = await JSON.parse(this.getChart());
 
     this.messages = messages;
     this.times = times;
 
-    console.log(vuechartData);
-    console.log('@@@@@');
-    console.log(this.BarChartData.datasets[0].data);
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    console.log(vuechartData[0]);
+    //↓怪しい。。。
+    console.log(this.BarChartData.datasets[0].data[0]);
+    console.log(typeof(this.BarChartData.datasets[0].data[0]));
 
+    this.BarChartData.datasets[0].data[0] = vuechartData[0];
+    // Vue.set(this.BarChartData.datasets[0].data)
 
-    this.BarChartData.datasets[0].data = vuechartData[0];
-    // this.BarChartData.datasets[0].data = 300;
+    
     this.initialLoaded = true;
   },
   methods: {
@@ -143,16 +142,14 @@ export default {
       this.times = times
     },
     addChart(vuechartData) {
-      //ここのvuechartDataをいじればレスポンス返ってくる！！！
-      console.log('!!!!!');
+      //ここは正しい！！！
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!');
       console.log(vuechartData);
-      console.log(this.BarChartData.datasets[0].data);
-
-      // this.BarChartData.datasets[0].data.push(vuechartData)
-      // console.log(this.BarChartData.datasets[0].data);
-
+      console.log(this.BarChartData.datasets[0].data[0]);
+      
       this.BarChartData.datasets[0].data[0] = vuechartData
-      // this.BarChartData.datasets[0].data[0] = this.times
+      // this.BarChartData.datasets[0].data.update()
+      // Vue.set(this.BarChartData.datasets[0].data[0])
     },
     async fetchMessages() {
       let messages = [];
@@ -179,9 +176,9 @@ export default {
       let chartdbtime = await MessageModel.dbtime();
       try {
         if (vuechartData.length === 0) {
-          vuechartData.push(chartdbtime);
+          await vuechartData.push(chartdbtime);
         } 
-          // vuechartData[0] = vuechartData[0] + chartdbtime;
+          // vuechartData[0] = chartdbtime;
       } catch (error) {
         alert(error.message);
       }
