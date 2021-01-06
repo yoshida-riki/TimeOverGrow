@@ -1,6 +1,6 @@
 {
   "name": "time-over-grow",
-  "version": "1.0.0",
+  "version": "1.22.10",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -50,7 +50,7 @@
     "vue-jest": "^3.0.7"
   },
   "engines": {
-    "node": "14.15.1"
+    "node": "12.18"
   },
   "lint-staged": {
     "*.js": "eslint --fix"
