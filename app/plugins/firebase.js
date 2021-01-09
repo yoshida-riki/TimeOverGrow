@@ -1,5 +1,4 @@
 import firebase from 'firebase'
-// import 'firebase/analytics'
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -12,13 +11,14 @@ const firebaseConfig = {
   appId: "1:219011344413:web:bb9edbc8a3ca0c44ffbef4",
   measurementId: "G-5KC7H92YQP"
 };
-// Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-if (firebase.apps.length === 0) {
-  firebase.initializeApp(firebaseConfig);
-}
 
-// firebase.analytics();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig)
+  // firebase.analytics()
+}
 
 export const db = firebase.firestore();
 export const dbMessages = db.collection('messages');
+
+export const auth = firebase.auth
+export default firebase

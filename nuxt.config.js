@@ -1,4 +1,10 @@
 export default {
+  router: {
+    middleware: 'authenticated'
+  },
+  modules: [
+    '@nuxtjs/vuetify'
+  ],
   head: {
     title: 'time-over-grow',
     meta: [
@@ -18,6 +24,8 @@ export default {
     ],
   },
   plugins: [
+    '~/plugins/firebase.js',
+    '~/plugins/firebase.auth.js',
     {
       src: '@/plugins/plugin',
     },

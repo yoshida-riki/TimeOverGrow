@@ -1,8 +1,8 @@
 <template>
   <v-card class="message">
-    <p class="message-text">{{ time }}時間</p>
+    <p class="message-text mb-0">{{ time }}時間</p>
     <div class="message-date">{{ date }}</div>
-    <p class="message-text">{{ body }}</p>
+    <p class="message-text mb-0">{{ body }}</p>
   </v-card>
 </template>
 
@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .message {
-  min-height: 80px;
+  min-height: 30px;
   padding: 10px;
   margin: 0 5vw 2vw;
 }

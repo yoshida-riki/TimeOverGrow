@@ -11,12 +11,16 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mdi/js": "^5.8.55",
+    "@mdi/react": "^1.4.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/vuetify": "^1.11.2",
     "animated-number-vue": "^1.0.0",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "core-js": "^3.8.1",
     "firebase": "^8.2.1",
+    "firebaseui": "^4.7.1",
     "moment": "^2.29.1",
     "netlify-cli": "^2.69.11",
     "normalize.css": "^8.0.1",
@@ -27,7 +31,8 @@
     "vue-loader": "^15.9.6",
     "vuetify": "^2.4.0",
     "vuetify-loader": "^1.6.0",
-    "vuexfire": "^3.2.5"
+    "vuexfire": "^3.2.5",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
