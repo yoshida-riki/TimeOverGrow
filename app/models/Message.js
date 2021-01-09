@@ -1,9 +1,11 @@
 import firebase from 'firebase'
-import { dbMessages } from '../db'
+import { dbMessages } from '../plugins/firebase'
+import auth from '../plugins/firebase.auth'
 
 class Message {
   constructor ({id, time, body, date}) {
     this.id = id;
+    // this.user = user;
     this.time = time;
     this.body = body;
     this.date = date;
@@ -46,6 +48,7 @@ class Message {
   static create(id, data) {
     return new Message({
       id,
+      // user: db.doc('users/' + user_key),
       time: data.time,
       body: data.body,
       date: data.date.toDate().toLocaleString()

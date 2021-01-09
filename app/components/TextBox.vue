@@ -10,11 +10,11 @@
         step="0.25"
         placeholder="3"
       />時間
+      <p>今日のアウトプット内容</p>
       <v-textarea
         v-model.trim="body"
         class="textbox-area"
-        label="今日のアウトプット内容"
-        color="red"
+        label="JavaScriptの非同期処理について学んだが、まだまだ理解不足なのでクイズアプリの実装を通して学んでいきたい。"
         flat
         auto-grow
         outlined

@@ -2,10 +2,10 @@
   <div>
     <client-only>
       <v-row class="container d-flex justify-center">
-        <v-col cols="12" sm="6" md="4">
+        <v-col cols="6" sm="6" md="5">
           <TotalTime :times="times" />
         </v-col>
-        <v-col v-if="initialLoaded" cols="12" sm="6" md="8">
+        <v-col v-if="initialLoaded" cols="6" sm="6" md="7">
           <Chart
             :chart-data="BarChartData"
             :options="BarChartOptions"
@@ -26,16 +26,18 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuetify from 'vuetify'
+
+import MessageModel from '../models/Message'
+import { auth } from '../plugins/firebase'
+import store from '../store/index'
+import index from '../pages/index'
 import TotalTime from './TotalTime'
 import Chart from './Chart'
 import Textbox from './Textbox'
 import Spinner from './Spinner'
 import MessageList from './MessageList'
-import MessageModel from '../models/Message'
 
-Vue.use(Vuetify)
+// Vue.use(Vuetify)
 export default {
   components: {
     TotalTime,
@@ -74,6 +76,17 @@ export default {
     this.times = times;
     this.BarChartData.datasets[0].data[0] = vuechartData[0];
     this.initialLoaded = true;
+
+
+    auth().onAuthStateChanged( user => {
+      if (user) {
+        // User is signed in.
+        console.log('is login.')
+      } else {
+        // No user is signed in.
+        console.log('No user is signed in.')
+      }
+    })
   },
 
   methods: {
@@ -98,7 +111,7 @@ export default {
             data: vuechartData,
             backgroundColor: ['rgba(54, 162, 235, 0.2)'],
             borderColor: ['rgba(54, 162, 235, 1)'],
-            borderWidth: [1],
+            // borderWidth: [1],
           }
         ]
       },
