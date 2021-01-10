@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import firebaseAuth from './firebase.auth'
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -17,8 +18,25 @@ if (!firebase.apps.length) {
   // firebase.analytics()
 }
 
+firebase.auth().onAuthStateChanged( user => {
+  if (user) {
+    // User is signed in.
+    console.log('is login.')
+    console.log(user.uid);
+    // db.collection('users').doc().set(user.uid)
+    let userId = user.uid;
+    return userId
+  } else {
+    // No user is signed in.
+    console.log('No user is signed in.')
+  }
+})
+
 export const db = firebase.firestore();
-export const dbMessages = db.collection('messages');
+// export const dbMessages = db.collection('messages');
+export const dbMessages = db.collection('users').doc(userId).collection('messages');
+
+
 
 export const auth = firebase.auth
 export default firebase

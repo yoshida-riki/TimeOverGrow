@@ -1,11 +1,11 @@
 import firebase from 'firebase'
 import { dbMessages } from '../plugins/firebase'
+import firebaseAuth from '../plugins/firebase.auth';
 import auth from '../plugins/firebase.auth'
 
 class Message {
   constructor ({id, time, body, date}) {
     this.id = id;
-    // this.user = user;
     this.time = time;
     this.body = body;
     this.date = date;
@@ -30,6 +30,7 @@ class Message {
     const snapShot = await docRef.get();
     const data = snapShot.data();
     const model = this.create(docRef.id, data);
+    // const model = this.create(user.uid, data);
 
     return model;
   }
@@ -41,14 +42,13 @@ class Message {
     }
 
     return collection.docs.map(doc => {
-      return this.create(doc.id, doc.data())
+      return this.create(userId, doc.data())
     });
   }
 
   static create(id, data) {
     return new Message({
       id,
-      // user: db.doc('users/' + user_key),
       time: data.time,
       body: data.body,
       date: data.date.toDate().toLocaleString()
