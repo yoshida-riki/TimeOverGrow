@@ -27,6 +27,7 @@
 
 <script>
 
+import firebase, { dbUsers } from '../plugins/firebase'
 import MessageModel from '../models/Message'
 import { auth } from '../plugins/firebase'
 import store from '../store/index'
@@ -82,6 +83,10 @@ export default {
       if (user) {
         // User is signed in.
         console.log('is login.')
+        console.log(user.uid);
+        // db.collection('users').doc().set(user.uid)
+        // dbUsers.set(user.uid);
+        return
       } else {
         // No user is signed in.
         console.log('No user is signed in.')
