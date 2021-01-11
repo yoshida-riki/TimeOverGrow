@@ -1,7 +1,8 @@
-import firebase from 'firebase'
+import firebase from '../plugins/firebase'
 import { dbMessages } from '../plugins/firebase'
 import firebaseAuth from '../plugins/firebase.auth';
 import auth from '../plugins/firebase.auth'
+
 
 class Message {
   constructor ({id, time, body, date}) {
@@ -26,11 +27,10 @@ class Message {
       date: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    const docRef = await dbMessages.add(postData);
+    const docRef = await dbMessages.doc().set(postData);
     const snapShot = await docRef.get();
     const data = snapShot.data();
     const model = this.create(docRef.id, data);
-    // const model = this.create(user.uid, data);
 
     return model;
   }
@@ -42,7 +42,7 @@ class Message {
     }
 
     return collection.docs.map(doc => {
-      return this.create(userId, doc.data())
+      return this.create(doc.id, doc.data())
     });
   }
 
