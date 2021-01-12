@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged( user => {
     console.log('is login');
     
     userId = user.uid;
-    db.collection('users').doc(userId).set({
+    db.collection('messages').doc(userId).set({
       userId: userId,
     })
     console.log(userId);
@@ -40,7 +40,7 @@ console.log(userId);
 
 export const db = firebase.firestore();
 // export const dbMessages = db.collection('messages');
-export const dbMessages = db.collection('users').doc(userId).collection('messages');
+export const dbMessages = db.collection('messages').doc(userId).collection('messages');
 
 export const auth = firebase.auth
 export default firebase

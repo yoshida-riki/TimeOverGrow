@@ -1,7 +1,6 @@
 import firebase from '../plugins/firebase'
 import { dbMessages } from '../plugins/firebase'
 import firebaseAuth from '../plugins/firebase.auth';
-import auth from '../plugins/firebase.auth'
 
 
 class Message {
@@ -27,7 +26,7 @@ class Message {
       date: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    const docRef = await dbMessages.doc().set(postData);
+    const docRef = await dbMessages.add(postData);
     const snapShot = await docRef.get();
     const data = snapShot.data();
     const model = this.create(docRef.id, data);
