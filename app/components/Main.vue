@@ -26,12 +26,9 @@
 </template>
 
 <script>
-import { db, auth } from '../plugins/firebase'
-import firebase, { dbMessages } from '../plugins/firebase'
+import { auth } from '../plugins/firebase'
+// import { db } from '../plugins/firebase'
 import MessageModel from '../models/Message'
-// import { auth } from '../plugins/firebase'
-import store from '../store/index'
-import index from '../pages/index'
 import TotalTime from './TotalTime'
 import Chart from './Chart'
 import Textbox from './Textbox'
@@ -78,39 +75,33 @@ export default {
     this.BarChartData.datasets[0].data[0] = vuechartData[0];
     this.initialLoaded = true;
 
-    let userId;
-    await auth().onAuthStateChanged( (user) => {
-      if (user) {
-        // User is signed in.
-        console.log('is login.')
+    // let userId;
+    // await auth().onAuthStateChanged( (user) => {
+    //   if (user) {
+    //     // User is signed in.
+    //     console.log('is login.')
 
-        userId = user.uid;
-        dbMessages.doc(userId).set({
-          userId: userId,
-        })
-
-        console.log(user.uid);
-        // console.log();
-        // db.collection('users').doc().set(user.uid)
-        // dbUsers.set(user.uid);
-        // db.collection('users').doc().set(user.uid);
-        return userId
-      } else {
-        // No user is signed in.
-        console.log('No user is signed in.')
-      }
-    })
-    console.log(userId);
+    //     userId = user.uid;
+    //     db.collection('messages').doc(userId).set({
+    //       userId: userId,
+    //     })
+    //     console.log(user.uid);
+    //     return userId
+    //   } else {
+    //     // No user is signed in.
+    //     console.log('No user is signed in.')
+    //   }
+    // })
   },
 
   methods: {
-    async getMessages() {
-      const uid = auth.currentUser
-      if (uid) {
-        const messages = await db.collection('messages').doc(uid).get()
-      }
-      console.log(messages);
-    },
+    // async getMessages() {
+    //   const uid = auth.currentUser
+    //   if (uid) {
+    //     const messages = await db.collection('messages').doc(uid).get()
+    //   }
+    //   console.log(messages);
+    // },
     addMessage(message) {
       this.messages.push(message)
     },
