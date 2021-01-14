@@ -1,7 +1,5 @@
-import firebase from '../plugins/firebase'
+import firebase from 'firebase'
 import { dbMessages } from '../plugins/firebase'
-import firebaseAuth from '../plugins/firebase.auth'
-import Main from '../components/Main.vue'
 
 class Message {
   constructor ({id, time, body, date}) {
@@ -19,9 +17,6 @@ class Message {
     if (!body || !body.trim()) {
       throw new Error('入力欄が空欄です。');
     }
-
-    console.log(userId);
-    getMessages();
 
     const postData = {
       time,

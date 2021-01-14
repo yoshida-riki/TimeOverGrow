@@ -24,15 +24,6 @@
             v-model="group"
             active-class="deep-grey--text text--accent-4"
           >
-            <!-- <v-list-item
-              color="grey darken-3"
-              @click="register"
-            >
-              <v-list-item-icon>
-                <v-icon>mdi-account-plus</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>新規登録</v-list-item-title>
-            </v-list-item> -->
 
             <v-list-item
               color="grey darken-3"

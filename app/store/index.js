@@ -1,7 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 import { auth } from '../plugins/firebase'
-
 import firebase from '../plugins/firebase'
 
 Vue.use(Vuex);
@@ -19,7 +18,7 @@ export const mutations = {
 }
 
 export const actions = {
-    // let userId;
+    // let userId
     // firebase.auth().onAuthStateChanged( user => {
     //     if (user) {
     //         // User is signed in
