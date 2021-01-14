@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import { auth } from '../plugins/firebase'
-// import { db } from '../plugins/firebase'
+import { auth, dbUser } from '../plugins/firebase'
+import { db } from '../plugins/firebase'
 import MessageModel from '../models/Message'
 import TotalTime from './TotalTime'
 import Chart from './Chart'
@@ -75,33 +75,39 @@ export default {
     this.BarChartData.datasets[0].data[0] = vuechartData[0];
     this.initialLoaded = true;
 
-    // let userId;
-    // await auth().onAuthStateChanged( (user) => {
-    //   if (user) {
-    //     // User is signed in.
-    //     console.log('is login.')
+    // 読み込み順Message.js→Main.vue
+    // クリックイベントを利用すればいけそう
+    let userId;
+    await auth().onAuthStateChanged( (user) => {
+      if (user) {
+        // User is signed in.
+        console.log('is login.')
 
-    //     userId = user.uid;
-    //     db.collection('messages').doc(userId).set({
-    //       userId: userId,
-    //     })
-    //     console.log(user.uid);
-    //     return userId
-    //   } else {
-    //     // No user is signed in.
-    //     console.log('No user is signed in.')
-    //   }
-    // })
+        userId = user.uid;
+        // dbUser.doc(userId).update({
+        //   userId: true
+        // })
+        // .then(function() {
+        //   console.log("Document successfully updated!");
+        // })
+        // .catch(function(error) {
+        //   // The document probably doesn't exist.
+        //   console.error("Error updating document: ", error);
+        // });
+
+        dbUser.doc(userId).set({
+          userId:userId
+        })
+        console.log(user.uid);
+        return userId
+      } else {
+        // No user is signed in.
+        console.log('No user is signed in.')
+      }
+    })
   },
 
   methods: {
-    // async getMessages() {
-    //   const uid = auth.currentUser
-    //   if (uid) {
-    //     const messages = await db.collection('messages').doc(uid).get()
-    //   }
-    //   console.log(messages);
-    // },
     addMessage(message) {
       this.messages.push(message)
     },
@@ -189,14 +195,12 @@ export default {
       try {
         if (vuechartData.length === 0) {
           await vuechartData.push(chartdbtime);
-        } 
-          // vuechartData[0] = chartdbtime;
+        }
       } catch (error) {
         alert(error.message);
       }
 
       return vuechartData
-      // this.makeData()
     },
   }
 }
