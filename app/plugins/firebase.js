@@ -16,8 +16,28 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig)
 }
 
+let userId;
+firebase.auth().onAuthStateChanged( (user) => {
+  if (user) {
+    // User is signed in.
+    console.log('is login.')
+
+    userId = user.uid;
+    dbUser.doc(userId).set({
+      // userId:userId
+    })
+    console.log(user.uid);
+    return userId
+  } else {
+    // No user is signed in.
+    console.log('No user is signed in.')
+  }
+})
+console.log(userId);
+
 export const db = firebase.firestore()
-export const dbMessages = db.collection('messages')
+export const dbUser = db.collection('user')
+export const dbMessages = dbUser.doc(userId).collection('messages')
 
 export const auth = firebase.auth
 export default firebase
