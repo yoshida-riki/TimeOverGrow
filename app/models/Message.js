@@ -27,7 +27,8 @@ class Message {
       date: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    const docRef = await dbMessages.doc(userId).set(postData);
+    // const docRef = await dbMessages.add(postData);
+    const docRef = await dbMessages.add(postData);
     const snapShot = await docRef.get();
     const data = snapShot.data();
     const model = this.create(docRef.id, data);
@@ -49,6 +50,7 @@ class Message {
   static create(id, data) {
     return new Message({
       id,
+      userID: data.userID,
       time: data.time,
       body: data.body,
       date: data.date.toDate().toLocaleString()

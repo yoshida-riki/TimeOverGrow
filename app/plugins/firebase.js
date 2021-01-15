@@ -17,27 +17,33 @@ if (!firebase.apps.length) {
 }
 
 let userId;
-firebase.auth().onAuthStateChanged( (user) => {
-  if (user) {
-    // User is signed in.
-    console.log('is login.')
+(function userauth() {
+  return new Promise(resolve => {
+    firebase.auth().onAuthStateChanged( (user) => {
+      if (user) {
+        // User is signed in.
+        console.log('is login.')
 
-    userId = user.uid;
-    dbUser.doc(userId).set({
-      // userId:userId
+        userId = user.uid;
+        db.collection('user').doc(userId).set({
+          userId,
+        })
+        console.log(userId);
+
+        return userId
+        resolve(userId)
+      } else {
+        // No user is signed in.
+        console.log('No user is signed in.')
+      }
     })
-    console.log(user.uid);
-    return userId
-  } else {
-    // No user is signed in.
-    console.log('No user is signed in.')
-  }
-})
-console.log(userId);
+  })
+})()
 
 export const db = firebase.firestore()
-export const dbUser = db.collection('user')
-export const dbMessages = dbUser.doc(userId).collection('messages')
+export const dbUser = db.collection('user').doc(userId)
+export const dbMessages = dbUser.collection('messages')
+
 
 export const auth = firebase.auth
 export default firebase

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { auth } from '../plugins/firebase'
+// import { auth } from '../plugins/firebase'
 import firebase from '../plugins/firebase'
 
 Vue.use(Vuex);

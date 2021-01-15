@@ -77,34 +77,36 @@ export default {
 
     // 読み込み順Message.js→Main.vue
     // クリックイベントを利用すればいけそう
-    let userId;
-    await auth().onAuthStateChanged( (user) => {
-      if (user) {
-        // User is signed in.
-        console.log('is login.')
+    // let userId;
+    // await auth().onAuthStateChanged( (user) => {
+    //   if (user) {
+    //     // User is signed in.
+    //     console.log('is login.')
 
-        userId = user.uid;
-        // dbUser.doc(userId).update({
-        //   userId: true
-        // })
-        // .then(function() {
-        //   console.log("Document successfully updated!");
-        // })
-        // .catch(function(error) {
-        //   // The document probably doesn't exist.
-        //   console.error("Error updating document: ", error);
-        // });
+    //     userId = user.uid;
+    //     // dbUser.doc(userId).update({
+    //     //   userId: true
+    //     // })
+    //     // .then(function() {
+    //     //   console.log("Document successfully updated!");
+    //     // })
+    //     // .catch(function(error) {
+    //     //   // The document probably doesn't exist.
+    //     //   console.error("Error updating document: ", error);
+    //     // });
 
-        dbUser.doc(userId).set({
-          userId:userId
-        })
-        console.log(user.uid);
-        return userId
-      } else {
-        // No user is signed in.
-        console.log('No user is signed in.')
-      }
-    })
+    //     dbUser.doc(userId).set({
+    //       userId:userId
+    //     })
+    //     console.log(user.uid);
+    //     return userId
+    //   } else {
+    //     // No user is signed in.
+    //     console.log('No user is signed in.')
+    //   }
+    // })
+
+    // console.log(dbUser);
   },
 
   methods: {
