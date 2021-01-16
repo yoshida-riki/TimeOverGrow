@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import { auth } from '../plugins/firebase'
+import { auth } from '../plugins/firebase'
 import firebase from '../plugins/firebase'
 
 Vue.use(Vuex);
@@ -18,24 +18,6 @@ export const mutations = {
 }
 
 export const actions = {
-    // let userId
-    // firebase.auth().onAuthStateChanged( user => {
-    //     if (user) {
-    //         // User is signed in
-    //         console.log('is login');
-            
-    //         userId = user.uid;
-    //         db.collection('messages').doc(userId).set({
-    //         userId: userId,
-    //         })
-    //         console.log(userId);
-            
-    //         return userId
-    //     } else {
-    //         console.log('No user is signed in.')
-    //     }
-    // }),
-
     signUp({ commit }, { email, password }) {
         return auth().createUserWithEmailAndPassword(email, password)
     },
@@ -61,17 +43,3 @@ export const getters = {
         return !!state.user
     }
 }
-
-// export default new Vuex.Store({
-//     // state: {
-//     //   idToken: null
-//     // }, 
-//     // getters: {
-//     //   idToken: state => state.idToken
-//     // },
-//     mutations: {
-//       updateIdToken(state, idToken) { 
-//         state.idToken = idToken;
-//       }
-//     },
-// });

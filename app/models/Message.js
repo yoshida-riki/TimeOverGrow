@@ -1,12 +1,12 @@
 import firebase from 'firebase'
 import { dbUser } from 'firebase'
 import { userId } from 'firebase'
+import { exec } from 'firebase'
 import { dbMessages } from '../plugins/firebase'
 
 
 class Message {
-  constructor ({id, time, body, date}) {
-    this.id = id;
+  constructor ({time, body, date}) {
     this.time = time;
     this.body = body;
     this.date = date;
@@ -21,36 +21,38 @@ class Message {
       throw new Error('入力欄が空欄です。');
     }
 
+    const uid = firebase.auth().currentUser.uid
+
+
     const postData = {
       time,
       body,
       date: firebase.firestore.FieldValue.serverTimestamp(),
+      uid,
     };
 
-    // const docRef = await dbMessages.add(postData);
     const docRef = await dbMessages.add(postData);
     const snapShot = await docRef.get();
     const data = snapShot.data();
-    const model = this.create(docRef.id, data);
+    const model = this.create(data);
 
     return model;
   }
 
   static async fetchMessages() {
-    const collection = await dbMessages.orderBy('date').get();
+    const uid = firebase.auth().currentUser.uid
+    const collection = await dbMessages.where('uid', '==', uid).orderBy('date').get();
     if (collection.empty) {
       return [];
     }
 
     return collection.docs.map(doc => {
-      return this.create(doc.id, doc.data())
+      return this.create(doc.data())
     });
   }
 
-  static create(id, data) {
+  static create(data) {
     return new Message({
-      id,
-      userID: data.userID,
       time: data.time,
       body: data.body,
       date: data.date.toDate().toLocaleString()
@@ -58,15 +60,16 @@ class Message {
   };
 
   static async dbtime() {
+    const uid = firebase.auth().currentUser.uid
     try {
-      const querySnapshot = await dbMessages.get()
+      const querySnapshot = await dbMessages.where('uid', '==', uid).get()
       let totaltime = 0
       querySnapshot.forEach((postDoc) => {
         totaltime += postDoc.data().time
       })
       return totaltime
     } catch (err) {
-      alert('dbtimeエラー')
+      console.error('dbtimeエラー')
     }
   }
 }

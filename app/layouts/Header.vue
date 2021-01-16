@@ -66,19 +66,7 @@ export default {
         .catch((err) => {
           alert(err.message)
         })
-    },
-    // register(err) {
-    //   this.$store
-    //     .dispatch('register')
-    //     .then(() => {
-    //       this.$router.push({
-    //         name: 'register'
-    //       })
-    //     })
-    //     .catch((err) => {
-    //       alert(err.message)
-    //     })
-    // }
+    }
   }
 }
 </script>
