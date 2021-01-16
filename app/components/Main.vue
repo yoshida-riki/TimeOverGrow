@@ -35,7 +35,7 @@ import Textbox from './Textbox'
 import Spinner from './Spinner'
 import MessageList from './MessageList'
 
-// Vue.use(Vuetify)
+
 export default {
   components: {
     TotalTime,
@@ -74,39 +74,6 @@ export default {
     this.times = times;
     this.BarChartData.datasets[0].data[0] = vuechartData[0];
     this.initialLoaded = true;
-
-    // 読み込み順Message.js→Main.vue
-    // クリックイベントを利用すればいけそう
-    // let userId;
-    // await auth().onAuthStateChanged( (user) => {
-    //   if (user) {
-    //     // User is signed in.
-    //     console.log('is login.')
-
-    //     userId = user.uid;
-    //     // dbUser.doc(userId).update({
-    //     //   userId: true
-    //     // })
-    //     // .then(function() {
-    //     //   console.log("Document successfully updated!");
-    //     // })
-    //     // .catch(function(error) {
-    //     //   // The document probably doesn't exist.
-    //     //   console.error("Error updating document: ", error);
-    //     // });
-
-    //     dbUser.doc(userId).set({
-    //       userId:userId
-    //     })
-    //     console.log(user.uid);
-    //     return userId
-    //   } else {
-    //     // No user is signed in.
-    //     console.log('No user is signed in.')
-    //   }
-    // })
-
-    // console.log(dbUser);
   },
 
   methods: {
@@ -176,7 +143,7 @@ export default {
       try {
         messages = await MessageModel.fetchMessages();
       } catch (error) {
-        alert(error.message);
+        console.error(error.message);
       }
 
       return messages
@@ -186,7 +153,7 @@ export default {
       try {
         times += await MessageModel.dbtime();
       } catch (error) {
-        alert(error.message);
+        console.error(error.message);
       }
 
       return times
@@ -199,7 +166,7 @@ export default {
           await vuechartData.push(chartdbtime);
         }
       } catch (error) {
-        alert(error.message);
+        console.error(error.message);
       }
 
       return vuechartData
