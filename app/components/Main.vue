@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { auth, dbUser } from '../plugins/firebase'
+import { auth } from '../plugins/firebase'
 import { db } from '../plugins/firebase'
 import MessageModel from '../models/Message'
 import TotalTime from './TotalTime'
