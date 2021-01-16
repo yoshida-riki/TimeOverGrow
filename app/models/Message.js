@@ -1,6 +1,6 @@
 import firebase from 'firebase'
-import { dbUser } from 'firebase'
-import { userId } from 'firebase'
+// import { dbUser } from 'firebase'
+// import { userId } from 'firebase'
 import { exec } from 'firebase'
 import { dbMessages } from '../plugins/firebase'
 

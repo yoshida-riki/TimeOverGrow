@@ -14,13 +14,21 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-  css: [],
+  // css: [],
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+      {
+        // ローダーの対象 // 拡張子 .js の場合
+        test: /\.js$/,
+      }
     ],
   },
   plugins: [
