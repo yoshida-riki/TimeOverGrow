@@ -39,7 +39,7 @@ export default {
     },
   ],
   components: true,
-  buildModules: ['@nuxtjs/vuetify'],
+  // buildModules: ['@nuxtjs/vuetify'],
   srcDir: 'app/',
   build: {
     publicPath: '/assets/',
