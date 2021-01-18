@@ -1,45 +1,44 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { auth } from '../plugins/firebase'
-import firebase from '../plugins/firebase'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export const strict = false
 
 export const state = () => ({
-    user: null,
+  user: null
 })
 
 export const mutations = {
-    setUser(state, payload) {
-        state.user = payload
-    }
+  setUser(state, payload) {
+    state.user = payload
+  }
 }
 
 export const actions = {
-    signUp({ commit }, { email, password }) {
-        return auth().createUserWithEmailAndPassword(email, password)
-    },
+  signUp({ email, password }) {
+    return auth().createUserWithEmailAndPassword(email, password)
+  },
 
-    signInWithEmail({ commit }, { email, password }) {
-        return auth().signInWithEmailAndPassword(email, password)
-    },
+  signInWithEmail({ email, password }) {
+    return auth().signInWithEmailAndPassword(email, password)
+  },
 
-    signInWithGoogle({ commit }){
-        return auth().signInWithPopup(new auth.GoogleAuthProvider())
-    },
+  signInWithGoogle() {
+    return auth().signInWithPopup(new auth.GoogleAuthProvider())
+  },
 
-    signOut() {
-        return auth().signOut()
-    }
+  signOut() {
+    return auth().signOut()
+  }
 }
 
 export const getters = {
-    user(state){
-        return state.user
-    },
-    isAuthenticated (state) {
-        return !!state.user
-    }
+  user(state) {
+    return state.user
+  },
+  isAuthenticated(state) {
+    return !!state.user
+  }
 }

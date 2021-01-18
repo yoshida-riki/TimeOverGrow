@@ -26,8 +26,12 @@
 </template>
 
 <script>
-import { auth } from '../plugins/firebase'
-import { db } from '../plugins/firebase'
+
+/* eslint-disable */
+
+
+// import { auth } from '../plugins/firebase'
+// import { db } from '../plugins/firebase'
 import MessageModel from '../models/Message'
 import TotalTime from './TotalTime'
 import Chart from './Chart'
@@ -86,9 +90,9 @@ export default {
     async makeData () {
       let vuechartData = [];
       let chartdbtime = await MessageModel.dbtime();
-        if (vuechartData.length === 0) {
-          await vuechartData.push(chartdbtime);
-        } 
+      if (vuechartData.length === 0) {
+        await vuechartData.push(chartdbtime);
+      } 
       // グラフにセットする
       this.BarChartData = {
         labels: ['学習時間'],
@@ -173,6 +177,7 @@ export default {
     },
   }
 }
+/* eslint-enable */
 </script>
 
 <style scoped>

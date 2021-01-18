@@ -1,10 +1,8 @@
 export default {
   router: {
-    middleware: 'authenticated'
+    middleware: 'authenticated',
   },
-  modules: [
-    '@nuxtjs/vuetify'
-  ],
+  modules: ['@nuxtjs/vuetify'],
   head: {
     title: 'time-over-grow',
     meta: [
@@ -28,7 +26,7 @@ export default {
       {
         // ローダーの対象 // 拡張子 .js の場合
         test: /\.js$/,
-      }
+      },
     ],
   },
   plugins: [
@@ -39,12 +37,11 @@ export default {
     },
   ],
   components: true,
-  // buildModules: ['@nuxtjs/vuetify'],
+  buildModules: ['@nuxtjs/eslint-module'],
   srcDir: 'app/',
   build: {
     publicPath: '/assets/',
     buildDir: 'nuxt-dist',
-    extend(config, ctx) {},
   },
   performance: {
     hints: false,
