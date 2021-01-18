@@ -60,19 +60,19 @@ import { auth } from '../plugins/firebase.js'
 
 
 export default {
-	methods: {
-		googleLogin(err) {
-			this.$store
-      .dispatch('signInWithGoogle')
-      .then(() => {
-        this.$router.push({
-          name: 'index'
+  methods: {
+    googleLogin(err) { // eslint-disable-line
+      this.$store
+        .dispatch('signInWithGoogle')
+        .then(() => {
+          this.$router.push({
+            name: 'index'
+          })
         })
-      })
-      .catch((err) => {
-        this.$parent.socialLoginErrorMsg =
+        .catch((err) => {
+          this.$parent.socialLoginErrorMsg =
           '現在Googleでのログインは使用できません。後ほどお試しください。'
-      })
+        })
     },
     userLogin() {
       auth().signInAnonymously()
@@ -89,7 +89,7 @@ export default {
           console.log('エラーメッセージ', errorCode, errorMessage)
         });
     }
-	}
+  }
 }
 </script>
 

@@ -143,155 +143,155 @@ import Header from '../layouts/Header'
 
 
 export default {
-	layout: 'signin',
-	components: {
-		SocialLogin
-	},
-	data: function() {
-		return {
-			registerErrorMsg: '',
-			tab: null,
-			register_valid: true,
-			register_email: '',
-			register_password: '',
-			register_password_again: '',
-			emailRules: [
-				(v) => {
-					if (v) {
-						return (
-							/.+@.+\..+/.test(v) ||
+  layout: 'signin',
+  components: {
+    SocialLogin
+  },
+  data: function() {
+    return {
+      registerErrorMsg: '',
+      tab: null,
+      register_valid: true,
+      register_email: '',
+      register_password: '',
+      register_password_again: '',
+      emailRules: [
+        (v) => {
+          if (v) {
+            return (
+              /.+@.+\..+/.test(v) ||
 							'有効なメールアドレスを入力してください'
-						)
-					}else{
-						return true
-					}
-				}
-			],
-			register_passwordRules: [
-				(v) => !!v || 'パスワードを入力してください',
-				(v) =>
-					zxcvbn(v).score >= 3 ||
+            )
+          }else{
+            return true
+          }
+        }
+      ],
+      register_passwordRules: [
+        (v) => !!v || 'パスワードを入力してください',
+        (v) =>
+          zxcvbn(v).score >= 3 ||
 					'大文字・小文字・数字・記号を混ぜた強いパスワードにしてください'
-			],
-			register_passwordAgainRules: [
-				(v) => {
-					if (v) {
-						return (
-							this.$refs.register_password.value === v ||
+      ],
+      register_passwordAgainRules: [
+        (v) => {
+          if (v) {
+            return (
+              this.$refs.register_password.value === v ||
 							'パスワードと一致しません'
-						)
-					}else{
-						return true
-					}
-				}
-			],
-			show_registerPassword: false
-		}
-	},
-	computed: {
-		progress() {
-			return this.score.value
-		},
-		score() {
-			const result = zxcvbn(this.register_password)
-			switch (result.score) {
-				case 4:
-					return {
-						color: 'green',
-						value: 100
-					}
-				case 3:
-					return {
-						color: 'light-green lighten-1',
-						value: 75
-					}
-				case 2:
-					return {
-						color: 'amber accent-2',
-						value: 50
-					}
-				case 1:
-					return {
-						color: 'deep-orange lighten-1',
-						value: 25
-					}
-				default:
-					return {
-						color: 'red darken-3',
-						value: 0
-					}
-			}
-		}
-	},
-	methods: {
-		email_register: function(err) {
-			if (this.$refs.register_form.validate()) {
-				this.$store
-					.dispatch('signUp', {
-						email: this.register_email,
-						password: this.register_password
-					})
-					.then(() => {
-						this.register_email = ''
-						this.register_password = ''
-						this.$router.push({
-							name: 'index',
-							params: {
-								dashboard_msg: true,
-								dashboard_msg_text:
+            )
+          }else{
+            return true
+          }
+        }
+      ],
+      show_registerPassword: false
+    }
+  },
+  computed: {
+    progress() {
+      return this.score.value
+    },
+    score() {
+      const result = zxcvbn(this.register_password)
+      switch (result.score) {
+      case 4:
+        return {
+          color: 'green',
+          value: 100
+        }
+      case 3:
+        return {
+          color: 'light-green lighten-1',
+          value: 75
+        }
+      case 2:
+        return {
+          color: 'amber accent-2',
+          value: 50
+        }
+      case 1:
+        return {
+          color: 'deep-orange lighten-1',
+          value: 25
+        }
+      default:
+        return {
+          color: 'red darken-3',
+          value: 0
+        }
+      }
+    }
+  },
+  methods: {
+    email_register: function(err) {
+      if (this.$refs.register_form.validate()) {
+        this.$store
+          .dispatch('signUp', {
+            email: this.register_email,
+            password: this.register_password
+          })
+          .then(() => {
+            this.register_email = ''
+            this.register_password = ''
+            this.$router.push({
+              name: 'index',
+              params: {
+                dashboard_msg: true,
+                dashboard_msg_text:
 									'アカウントの登録が完了しました。'
-							}
-						})
-					})
-					.catch((err) => {
-						console.log(err)
-						if (err.code === 'auth/email-already-in-use') {
-							this.registerErrorMsg =
+              }
+            })
+          })
+          .catch((err) => {
+            console.log(err)
+            if (err.code === 'auth/email-already-in-use') {
+              this.registerErrorMsg =
 								'このメールアドレスは既に登録されています。'
-						} else if (err.code === 'auth/invalid-email') {
-							this.registerErrorMsg = '無効なメールアドレスです。'
-						} else {
-							this.registerErrorMsg =
+            } else if (err.code === 'auth/invalid-email') {
+              this.registerErrorMsg = '無効なメールアドレスです。'
+            } else {
+              this.registerErrorMsg =
 								'エラーにより登録できませんでした。'
-						}
-					})
-			}
-		}
+            }
+          })
+      }
+    }
     // register() { //axiosでapiを叩くメソッドを定義
     //   axios.post(
     //     '/accounts:signUp?key=AIzaSyDmGnMT66bkyCcGrTYNOWTczIATGwTydmk',
     //     {
     //       email: this.register_email,
     //       password: this.register_password,
-		// 			returnSecureToken: true
+    // 			returnSecureToken: true
     //     }
-		// 	)
-		// 	.then((response) => {
-		// 		this.register_email = ''
-		// 		this.register_password = ''
-		// 		this.$store.commit('updateIdToken', response.data.idToken)
-		// 		this.$router.push({
-		// 			name: 'index',
-		// 			params: {
-		// 				dashboard_msg: true,
-		// 				dashboard_msg_text:
-		// 					'アカウントの登録が完了しました。'
-		// 			}
-		// 		})
+    // 	)
+    // 	.then((response) => {
+    // 		this.register_email = ''
+    // 		this.register_password = ''
+    // 		this.$store.commit('updateIdToken', response.data.idToken)
+    // 		this.$router.push({
+    // 			name: 'index',
+    // 			params: {
+    // 				dashboard_msg: true,
+    // 				dashboard_msg_text:
+    // 					'アカウントの登録が完了しました。'
+    // 			}
+    // 		})
     //     console.log(response) //返ってきたレスポンスをログに表示
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err)
-		// 		if (err.code === 'auth/email-already-in-use') {
-		// 			this.registerErrorMsg =
-		// 				'このメールアドレスは既に登録されています。'
-		// 		} else if (err.code === 'auth/invalid-email') {
-		// 			this.registerErrorMsg = '無効なメールアドレスです。'
-		// 		} else {
-		// 			this.registerErrorMsg =
-		// 				'エラーにより登録できませんでした。'
-		// 		}
-		// 	});
+    // 	})
+    // 	.catch((err) => {
+    // 		console.log(err)
+    // 		if (err.code === 'auth/email-already-in-use') {
+    // 			this.registerErrorMsg =
+    // 				'このメールアドレスは既に登録されています。'
+    // 		} else if (err.code === 'auth/invalid-email') {
+    // 			this.registerErrorMsg = '無効なメールアドレスです。'
+    // 		} else {
+    // 			this.registerErrorMsg =
+    // 				'エラーにより登録できませんでした。'
+    // 		}
+    // 	});
     //   this.email = "";
     //   this.password = "";
     // }

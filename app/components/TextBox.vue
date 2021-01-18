@@ -99,7 +99,7 @@ export default {
         if (vuechartData.length === 0) {
           vuechartData.push(chartdbtime);
         } 
-          this.onChart(vuechartData[0]);
+        this.onChart(vuechartData[0]);
       } catch (error) {
         alert(error.message);
       }

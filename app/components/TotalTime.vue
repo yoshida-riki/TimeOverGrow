@@ -1,7 +1,7 @@
 <template>
   <div>
     <client-only>
-      <v-card max-width="374" style="margin: 0 auto;">
+      <v-card max-width="374" style="margin: 0 auto">
         <v-img height="350" :src="image_src"></v-img>
         <div class="totaltime">
           <p class="times_text">これまでのトータル学習時間は</p>
@@ -18,12 +18,12 @@ export default {
     return {
       image_src: require('@/assets/Upgrade.png'),
     }
-  },  
+  },
   props: {
     times: {
       type: Number,
       required: true,
-    }
+    },
   },
 }
 </script>

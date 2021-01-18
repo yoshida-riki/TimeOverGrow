@@ -1,22 +1,22 @@
 module.exports = {
-  root: true,
   env: {
-    browser: true,
     node: true,
+    es6: true
   },
+  extends: ['prettier', 'prettier/vue'],
+  plugins: [],
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: 'babel-eslint',
+    sourceType: 'module',
+    parser: 'babel-eslint'
   },
-  extends: [
-    '@nuxtjs',
-    'prettier',
-    'prettier/vue',
-    'plugin:prettier/recommended',
-    'plugin:nuxt/recommended',
-    'eslint:recommended',
-  ],
-  plugins: ['prettier'],
+  root: true,
   rules: {
-    'prettier/prettier': [{}],
-  },
+    // jsのインデントは２
+    indent: [2, 2],
+    // 不要なカッコは消す
+    'no-extra-parens': 1,
+    // 無駄なスペースは削除
+    'no-multi-spaces': 2
+  }
 }

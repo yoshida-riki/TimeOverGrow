@@ -108,46 +108,46 @@ import { auth } from '../plugins/firebase'
 
 
 export default {
-	layout: 'signin',
-	components: {
-		SocialLogin
-	},
-	data: function() {
-		return {
-			tab: null,
-			login_valid: true,
-			login_email: '',
-			login_password: '',
-			show_loginpassword: false,
-			loginErrorMsg: '',
-			socialLoginErrorMsg: ''
-		}
-	},
-	methods: {
-		email_login: function(err) {
-			this.$store
-				.dispatch('signInWithEmail', {
-					email: this.login_email,
-					password: this.login_password
-				})
-				.then(() => {
-					this.login_email = ''
-					this.login_password = ''
-					this.$router.push({
-						name: 'index'
-					})
-				})
-				.catch((err) => {
-					if (err.code === 'auth/user-disabled') {
-						this.loginErrorMsg =
+  layout: 'signin',
+  components: {
+    SocialLogin
+  },
+  data: function() {
+    return {
+      tab: null,
+      login_valid: true,
+      login_email: '',
+      login_password: '',
+      show_loginpassword: false,
+      loginErrorMsg: '',
+      socialLoginErrorMsg: ''
+    }
+  },
+  methods: {
+    email_login: function(err) {
+      this.$store
+        .dispatch('signInWithEmail', {
+          email: this.login_email,
+          password: this.login_password
+        })
+        .then(() => {
+          this.login_email = ''
+          this.login_password = ''
+          this.$router.push({
+            name: 'index'
+          })
+        })
+        .catch((err) => {
+          if (err.code === 'auth/user-disabled') {
+            this.loginErrorMsg =
 							'このアカウントはロックされています。'
-					} else {
-						this.loginErrorMsg =
+          } else {
+            this.loginErrorMsg =
 							'メールアドレスまたはパスワードが間違っています。'
-					}
-				})
-		}
-		// login() {　//axiosでログイン用のインスタンスにアクセスするメソッドを定義
+          }
+        })
+    }
+    // login() {　//axiosでログイン用のインスタンスにアクセスするメソッドを定義
     //   axios.post( //エンドポイントのURLがログイン用のものを使う
     //     '/accounts:signUp?key=AIzaSyDmGnMT66bkyCcGrTYNOWTczIATGwTydmk',
     //     {
@@ -155,28 +155,28 @@ export default {
     //       password: this.login_password,
     //       returnSecureToken: true
     //     }
-		// 	)
-		// 	.then((response) => {
-		// 		this.login_email = ''
-		// 		this.login_password = ''
-		// 		this.$store.commit('updateIdToken', response.data.idToken) //追記
-		// 		this.$router.push({
-		// 			name: 'index'
-		// 		})
+    // 	)
+    // 	.then((response) => {
+    // 		this.login_email = ''
+    // 		this.login_password = ''
+    // 		this.$store.commit('updateIdToken', response.data.idToken) //追記
+    // 		this.$router.push({
+    // 			name: 'index'
+    // 		})
     //     console.log(response); //返ってきたレスポンスをログに表示
-		// 	})
-		// 	.catch((err) => {
-		// 		if (err.code === 'auth/user-disabled') {
-		// 			this.loginErrorMsg =
-		// 				'このアカウントはロックされています。'
-		// 		} else {
-		// 			this.loginErrorMsg =
-		// 				'メールアドレスまたはパスワードが間違っています。'
-		// 		}
-		// 	});
+    // 	})
+    // 	.catch((err) => {
+    // 		if (err.code === 'auth/user-disabled') {
+    // 			this.loginErrorMsg =
+    // 				'このアカウントはロックされています。'
+    // 		} else {
+    // 			this.loginErrorMsg =
+    // 				'メールアドレスまたはパスワードが間違っています。'
+    // 		}
+    // 	});
     //   this.email = "";
     //   this.password = "";
     // }
-	}
+  }
 }
 </script>
