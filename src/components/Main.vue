@@ -26,12 +26,6 @@
 </template>
 
 <script>
-
-/* eslint-disable */
-
-
-// import { auth } from '../plugins/firebase'
-// import { db } from '../plugins/firebase'
 import MessageModel from '../models/Message'
 import TotalTime from './TotalTime'
 import Chart from './Chart'
@@ -177,7 +171,6 @@ export default {
     },
   }
 }
-/* eslint-enable */
 </script>
 
 <style scoped>
