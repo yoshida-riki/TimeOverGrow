@@ -38,7 +38,7 @@ export default {
   ],
   components: true,
   buildModules: ['@nuxtjs/eslint-module'],
-  srcDir: 'app/',
+  srcDir: 'src/',
   build: {
     publicPath: '/assets/',
     buildDir: 'nuxt-dist',
