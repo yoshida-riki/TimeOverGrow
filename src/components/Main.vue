@@ -29,7 +29,7 @@
 import MessageModel from '../models/Message'
 import TotalTime from './TotalTime'
 import Chart from './Chart'
-import Textbox from './Textbox'
+import TextBox from './TextBox'
 import Spinner from './Spinner'
 import MessageList from './MessageList'
 
@@ -38,7 +38,7 @@ export default {
   components: {
     TotalTime,
     Chart,
-    Textbox,
+    TextBox,
     Spinner,
     MessageList,
   },
