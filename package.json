@@ -5,7 +5,7 @@
     "build": "nuxt build",
     "dev": "nuxt",
     "generate": "nuxt generate",
-    "lint-fix": "eslint --fix './app/**/*.js' && prettier --write './app/**/*.js' .gitignore ./src ./test --fix",
+    "lint-fix": "eslint --fix './src/**/*.js' && prettier --write './src/**/*.js' .gitignore ./src ./test --fix",
     "start": "nuxt start",
     "test": "jest"
   },
