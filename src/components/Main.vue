@@ -12,7 +12,7 @@
           />
         </v-col>
       </v-row>
-      <Textbox :on-post="addMessage" :on-get="addTime" :on-chart="makeData" class="container" />
+      <TextBox :on-post="addMessage" :on-get="addTime" :on-chart="makeData" class="container" />
       <Spinner v-if="!initialLoaded" class="container" />
       <p
         class="no-messages"
