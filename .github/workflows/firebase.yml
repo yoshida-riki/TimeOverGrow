@@ -9,12 +9,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    - uses: actions/checkout@v1
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.15.1'
-
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
@@ -36,12 +30,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    - uses: actions/checkout@v1
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.15.1'
-
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
@@ -50,7 +38,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: dist
-          path: dist
+          path: dis
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
