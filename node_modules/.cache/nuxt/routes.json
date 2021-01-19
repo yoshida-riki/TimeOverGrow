@@ -1,0 +1,23 @@
+[
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/Users/macbookpro/Documents/TimeOverGrow/src/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_1dfbe9c1"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "/Users/macbookpro/Documents/TimeOverGrow/src/pages/register.vue",
+    "chunkName": "pages/register",
+    "_name": "_04b84b7b"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/macbookpro/Documents/TimeOverGrow/src/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_545446aa"
+  }
+]
