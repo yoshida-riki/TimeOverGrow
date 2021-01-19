@@ -118,8 +118,8 @@ export default {
             // 目盛りについて
             ticks: {
               beginAtZero: true, // 0からスタートするか
-              max: 500,
-              stepSize: 50, // 目盛りの間隔
+              max: 1000,
+              stepSize: 100, // 目盛りの間隔
               callback: function (label, index, labels) {
                 return label + ' h';
               }
