@@ -1,4 +1,4 @@
-FROM node:14.15.x
+FROM node:14.15.1
 RUN mkdir -p /usr/src/app \
     apt-get update && \
     apt-get upgrade -y && \
