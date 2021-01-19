@@ -1,5 +1,5 @@
 FROM node:14.15.4
-RUN mkdir -p /usr/src/app \
+RUN mkdir -p /usr/src/ \
     apt-get update && \
     apt-get upgrade -y && \
     yarn global add @vue/cli && \
@@ -7,4 +7,4 @@ RUN mkdir -p /usr/src/app \
 
 EXPOSE 3000
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/
