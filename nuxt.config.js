@@ -42,22 +42,22 @@ export default {
   build: {
     publicPath: '/assets/',
     buildDir: 'nuxt-dist',
+    babel: {
+      presets({ isServer }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 },
+            },
+          ],
+        ]
+      },
+    },
   },
   performance: {
     hints: false,
   },
   target: 'static',
-  babel: {
-    presets({ isServer }) {
-      return [
-        [
-          require.resolve('@nuxt/babel-preset-app'),
-          {
-            buildTarget: isServer ? 'server' : 'client',
-            corejs: { version: 3 },
-          },
-        ],
-      ]
-    },
-  },
 }
