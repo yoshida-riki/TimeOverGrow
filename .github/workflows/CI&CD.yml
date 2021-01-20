@@ -39,6 +39,6 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting --project timeovergrow
+          args: deploy --only hosting --project timeovergrow-3e1ca
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
