@@ -1,19 +1,18 @@
+rules_version = '2';
 service cloud.firestore {
-  match /databases/{database}/documents/version/1 {
-    function isAuthenticated() {
-      return request.auth != null;
+  match /databases/{database}/documents {
+    // match /{document=**} {
+    //   allow read, write: if
+    //       request.time < timestamp.date(2021, 1, 27);
+    //   allow read: if request.auth.uid == resource.data.userId;
+    //   allow write: if request.auth.uid == request.resource.data.userId;
+    // }
+    match /users/{userId} {
+        allow read, write: if request.auth.uid == userId;
     }
-
-    function isMySelfDoc(userId) {
-      return request.auth.uid == userId;
-    }
-
-    match /user/{userId} {
-      allow read: if isAuthenticated();
-      allow create, update: if isMySelfDoc(userId);
-    }
-    match /{document=**} {
-      allow read, write: if isAuthenticated();
+    match /messages/{messageId} {
+        allow read: if request.auth.uid == resource.data.uid;
+        allow write: if request.auth.uid == request.resource.data.uid;
     }
   }
 }
